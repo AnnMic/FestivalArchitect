@@ -1,0 +1,1 @@
+../../cocos2d/cocos2d/CCParticleSystemBase_Private.h

@@ -1,0 +1,1 @@
+../../cocos2d/cocos2d/CCActionManager_Private.h

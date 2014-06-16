@@ -1,0 +1,16 @@
+PODS:
+  - cocos2d (3.1.0-alpha):
+    - cocos2d/ObjectiveChipmunk
+    - ObjectAL-for-iPhone
+  - cocos2d/ObjectiveChipmunk (3.1.0-alpha):
+    - ObjectAL-for-iPhone
+  - ObjectAL-for-iPhone (2.3)
+
+DEPENDENCIES:
+  - cocos2d (~> 3.0)
+
+SPEC CHECKSUMS:
+  cocos2d: f422fccc2460b8c68c9ba5764b378ce9b3912de7
+  ObjectAL-for-iPhone: e160b08576948bd14deb445ba9766afb0d759b1a
+
+COCOAPODS: 0.33.1
