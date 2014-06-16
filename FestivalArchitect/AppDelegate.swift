@@ -58,7 +58,7 @@ class AppDelegate : CCAppDelegate{
     
     override func startScene() -> CCScene! {
         
-        return GameScene.scene()
+        return HelloWorldLayer.scene()
     }
     
 }

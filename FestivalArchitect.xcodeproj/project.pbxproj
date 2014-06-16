@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		296B9B7A194F282C00A2831F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B9B79194F282C00A2831F /* main.swift */; };
+		299423E8194F708F003CB391 /* sample3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 299423E7194F708F003CB391 /* sample3.tmx */; };
+		299423EA194F70A8003CB391 /* HelloWorldLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299423E9194F70A8003CB391 /* HelloWorldLayer.swift */; };
 		299C998719449E8C00A7648E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C998619449E8C00A7648E /* AppDelegate.swift */; };
 		299C998B19449E8C00A7648E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C998A19449E8C00A7648E /* GameScene.swift */; };
 		299C999219449E8C00A7648E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299C999119449E8C00A7648E /* Images.xcassets */; };
 		299C999E19449E8C00A7648E /* FestivalArchitectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C999D19449E8C00A7648E /* FestivalArchitectTests.swift */; };
+		29E43ABC194F766E00B738FD /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 29E43ABB194F766E00B738FD /* TileMap.tmx */; };
+		29E43ABE194F76B600B738FD /* sample.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 29E43ABD194F76B600B738FD /* sample.tmx */; };
+		29E43AC0194F76DA00B738FD /* cobbleset-64_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E43ABF194F76DA00B738FD /* cobbleset-64_0.png */; };
 		99D0CE05381040A78E073FFB /* libPods-FestivalArchitect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6548CD41E34E2F8DFC5F93 /* libPods-FestivalArchitect.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +48,8 @@
 		224B3EBDD5FD4A8EA0CDEDAD /* Pods-FestivalArchitect.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FestivalArchitect.xcconfig"; path = "Pods/Pods-FestivalArchitect.xcconfig"; sourceTree = "<group>"; };
 		296B9B78194F276100A2831F /* FestivalArchitect-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FestivalArchitect-Bridging-Header.h"; sourceTree = "<group>"; };
 		296B9B79194F282C00A2831F /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		299423E7194F708F003CB391 /* sample3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample3.tmx; sourceTree = "<group>"; };
+		299423E9194F70A8003CB391 /* HelloWorldLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloWorldLayer.swift; sourceTree = "<group>"; };
 		299C998119449E8C00A7648E /* FestivalArchitect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestivalArchitect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C998519449E8C00A7648E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299C998619449E8C00A7648E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +58,9 @@
 		299C999719449E8C00A7648E /* FestivalArchitectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FestivalArchitectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C999C19449E8C00A7648E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299C999D19449E8C00A7648E /* FestivalArchitectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalArchitectTests.swift; sourceTree = "<group>"; };
+		29E43ABB194F766E00B738FD /* TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TileMap.tmx; sourceTree = "<group>"; };
+		29E43ABD194F76B600B738FD /* sample.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.tmx; sourceTree = "<group>"; };
+		29E43ABF194F76DA00B738FD /* cobbleset-64_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cobbleset-64_0.png"; sourceTree = "<group>"; };
 		6C6548CD41E34E2F8DFC5F93 /* libPods-FestivalArchitect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FestivalArchitect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,7 +86,11 @@
 		299C997819449E8C00A7648E = {
 			isa = PBXGroup;
 			children = (
+				29E43ABF194F76DA00B738FD /* cobbleset-64_0.png */,
+				29E43ABD194F76B600B738FD /* sample.tmx */,
+				29E43ABB194F766E00B738FD /* TileMap.tmx */,
 				296B9B78194F276100A2831F /* FestivalArchitect-Bridging-Header.h */,
+				299423E7194F708F003CB391 /* sample3.tmx */,
 				299C998319449E8C00A7648E /* FestivalArchitect */,
 				299C999A19449E8C00A7648E /* FestivalArchitectTests */,
 				299C998219449E8C00A7648E /* Products */,
@@ -101,6 +115,7 @@
 				299C998A19449E8C00A7648E /* GameScene.swift */,
 				299C999119449E8C00A7648E /* Images.xcassets */,
 				299C998419449E8C00A7648E /* Supporting Files */,
+				299423E9194F70A8003CB391 /* HelloWorldLayer.swift */,
 			);
 			path = FestivalArchitect;
 			sourceTree = "<group>";
@@ -223,7 +238,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E43AC0194F76DA00B738FD /* cobbleset-64_0.png in Resources */,
 				299C999219449E8C00A7648E /* Images.xcassets in Resources */,
+				29E43ABC194F766E00B738FD /* TileMap.tmx in Resources */,
+				299423E8194F708F003CB391 /* sample3.tmx in Resources */,
+				29E43ABE194F76B600B738FD /* sample.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				299C998B19449E8C00A7648E /* GameScene.swift in Sources */,
+				299423EA194F70A8003CB391 /* HelloWorldLayer.swift in Sources */,
 				296B9B7A194F282C00A2831F /* main.swift in Sources */,
 				299C998719449E8C00A7648E /* AppDelegate.swift in Sources */,
 			);

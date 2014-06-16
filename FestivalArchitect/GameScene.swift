@@ -11,13 +11,12 @@ class GameScene: CCScene {
     //var scene : CCScene
     
     class func scene() -> GameScene{
-
+  
         return GameScene()
     }
     
     init() {
-        
-        
+
         super.init()
         
         var background : CCNodeColor = CCNodeColor(color: CCColor.whiteColor())
@@ -27,6 +26,9 @@ class GameScene: CCScene {
         label.color = CCColor.redColor()
         label.position = CGPointMake(label.contentSize.width ,label.contentSize.height)
         self.addChild(label)
+        
+        
+        
         
     }
    
