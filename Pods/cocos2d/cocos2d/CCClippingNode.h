@@ -2,7 +2,6 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (c) 2012 Pierre-David Bélanger
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,83 +25,53 @@
 
 #import "CCNode.h"
 
-/**
- CCClippingNode can be used to clip (crop) your node content using a stencil.
- 
- ### Notes
- 
- - The stencil is an other CCNode that will not be drawn.
- - The clipping is done using the alpha part of the stencil (adjusted with an alphaThreshold).
- - Alpha threshold, content is only drawn where the stencil has pixels with alpha greater than the alpha threshold. (Default 1 disable alpha test)
- - Inverted, when True only draw the content outside of the stencil. (Default False)
- 
+/** CCClippingNode is a subclass of CCNode.
+ It draws its content (childs) clipped using a stencil.
+ The stencil is an other CCNode that will not be drawn.
+ The clipping is done using the alpha part of the stencil (adjusted with an alphaThreshold).
  */
-@interface CCClippingNode : CCNode {
-    
-    // Stencil Node.
+@interface CCClippingNode : CCNode
+{
     CCNode *_stencil;
-    
-    // Alpha threshold.
-    NSNumber *_alphaThreshold;
-    
-    // Inverted.
+    GLfloat _alphaThreshold;
     BOOL _inverted;
 }
 
-/// -----------------------------------------------------------------------
-/// @name Accessing Clipping Node Attributes
-/// -----------------------------------------------------------------------
+/** The CCNode to use as a stencil to do the clipping.
+ The stencil node will be retained.
+ This default to nil.
+ */
+@property (nonatomic, retain) CCNode *stencil;
 
-
-/** Stencil Node. */
-@property (nonatomic, strong) CCNode *stencil;
-
-/** The Alpha threshold. */
+/** The alpha threshold.
+ The content is drawn only where the stencil have pixel with alpha greater than the alphaThreshold.
+ Should be a float between 0 and 1.
+ This default to 1 (so alpha test is disabled).
+ */
 @property (nonatomic) GLfloat alphaThreshold;
 
-/** Inverted. */
+/** Inverted. If this is set to YES,
+ the stencil is inverted, so the content is drawn where the stencil is NOT drawn.
+ This default to NO.
+ */
 @property (nonatomic) BOOL inverted;
 
-
-/// -----------------------------------------------------------------------
-/// @name Creating a CCClippingNode Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates and returns a clipping node object without a stencil.
- *
- *  @return The CCClippingNode Object.
+/** Creates and initializes a clipping node without a stencil.
  */
-+(id) clippingNode;
++ (id)clippingNode;
 
-/**
- *  Creates and returns a clipping node object with the specified stencil node.
- *
- *  @param stencil Node to use as stencil.
- *
- *  @return The CCClippingNode Object.
+/** Creates and initializes a clipping node with an other node as its stencil.
+ The stencil node will be retained.
  */
-+(id) clippingNodeWithStencil:(CCNode *)stencil;
++ (id)clippingNodeWithStencil:(CCNode *)stencil;
 
-
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCClippingNode Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes and returns a clipping node object without a stencil.
- *
- *  @return An initialized CCClippingNode Object.
+/** Initializes a clipping node without a stencil.
  */
--(id) init;
+- (id)init;
 
-/**
- *  Initializes and returns a clipping node object with the specified stencil node.
- *
- *  @param stencil Node to use as stencil.
- *
- *  @return An initialized CCClippingNode Object.
+/** Initializes a clipping node with an other node as its stencil.
+ The stencil node will be retained, and its parent will be set to this clipping node.
  */
--(id) initWithStencil:(CCNode *)stencil;
+- (id)initWithStencil:(CCNode *)stencil;
 
 @end

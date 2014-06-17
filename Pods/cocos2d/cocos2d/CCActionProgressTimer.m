@@ -2,7 +2,6 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (C) 2010 Lam Pham
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,13 +26,15 @@
 
 #import "CCActionProgressTimer.h"
 
-@implementation CCActionProgressTo
-+(id) actionWithDuration: (CCTime) t percent: (float) v
+#define kProgressTimerCast CCProgressTimer*
+
+@implementation CCProgressTo
++(id) actionWithDuration: (ccTime) t percent: (float) v
 {
-	return [[ self alloc] initWithDuration: t percent: v];
+	return [[[ self alloc] initWithDuration: t percent: v] autorelease];
 }
 
--(id) initWithDuration: (CCTime) t percent: (float) v
+-(id) initWithDuration: (ccTime) t percent: (float) v
 {
 	if( (self=[super initWithDuration: t] ) )
 		_to = v;
@@ -50,7 +51,7 @@
 -(void) startWithTarget:(id) aTarget;
 {
 	[super startWithTarget:aTarget];
-	_from = [(CCProgressNode*)_target percentage];
+	_from = [(kProgressTimerCast)_target percentage];
 
 	// XXX: Is this correct ?
 	// Adding it to support CCRepeat
@@ -58,19 +59,19 @@
 		_from = 0;
 }
 
--(void) update: (CCTime) t
+-(void) update: (ccTime) t
 {
-	[(CCProgressNode*)_target setPercentage: _from + ( _to - _from ) * t];
+	[(kProgressTimerCast)_target setPercentage: _from + ( _to - _from ) * t];
 }
 @end
 
-@implementation CCActionProgressFromTo
-+(id) actionWithDuration: (CCTime) t from:(float)fromPercentage to:(float) toPercentage
+@implementation CCProgressFromTo
++(id) actionWithDuration: (ccTime) t from:(float)fromPercentage to:(float) toPercentage
 {
-	return [[self alloc] initWithDuration: t from: fromPercentage to: toPercentage];
+	return [[[self alloc] initWithDuration: t from: fromPercentage to: toPercentage] autorelease];
 }
 
--(id) initWithDuration: (CCTime) t from:(float)fromPercentage to:(float) toPercentage
+-(id) initWithDuration: (ccTime) t from:(float)fromPercentage to:(float) toPercentage
 {
 	if( (self=[super initWithDuration: t] ) ){
 		_to = toPercentage;
@@ -95,8 +96,8 @@
 	[super startWithTarget:aTarget];
 }
 
--(void) update: (CCTime) t
+-(void) update: (ccTime) t
 {
-	[(CCProgressNode*)_target setPercentage: _from + ( _to - _from ) * t];
+	[(kProgressTimerCast)_target setPercentage: _from + ( _to - _from ) * t];
 }
 @end

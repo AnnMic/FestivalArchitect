@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,17 +26,27 @@
 
 #import "CCAtlasNode.h"
 #import "ccMacros.h"
-#import "CCShader.h"
+#import "CCGLProgram.h"
 #import "CCTextureCache.h"
+#import "CCShaderCache.h"
+#import "ccGLStateCache.h"
 #import "CCDirector.h"
-#import "CCNode_Private.h"
+#import "Support/TransformUtils.h"
+
+// external
+#import "kazmath/GL/matrix.h"
 
 
 @interface CCAtlasNode ()
 -(void) calculateMaxItems;
+-(void) updateBlendFunc;
+-(void) updateOpacityModifyRGB;
 @end
 
 @implementation CCAtlasNode
+
+@synthesize textureAtlas = _textureAtlas;
+@synthesize blendFunc = _blendFunc;
 @synthesize quadsToDraw = _quadsToDraw;
 
 #pragma mark CCAtlasNode - Creation & Init
@@ -49,16 +58,16 @@
 
 +(id) atlasWithTileFile:(NSString*)tile tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c
 {
-	return [[self alloc] initWithTileFile:tile tileWidth:w tileHeight:h itemsToRender:c];
+	return [[[self alloc] initWithTileFile:tile tileWidth:w tileHeight:h itemsToRender:c] autorelease];
 }
 
 -(id) initWithTileFile:(NSString*)filename tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c
 {
-	CCTexture *texture = [[CCTextureCache sharedTextureCache] addImage:filename];
+	CCTexture2D *texture = [[CCTextureCache sharedTextureCache] addImage:filename];
 	return [self initWithTexture:texture tileWidth:w tileHeight:h itemsToRender:c];
 }
 
--(id) initWithTexture:(CCTexture*)texture tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c;
+-(id) initWithTexture:(CCTexture2D*)texture tileWidth:(NSUInteger)w tileHeight:(NSUInteger)h itemsToRender: (NSUInteger) c;
 {
 	if( (self=[super init]) ) {
 		
@@ -66,33 +75,47 @@
 		_itemHeight = h;
 
 		_colorUnmodified = ccWHITE;
+		_opacityModifyRGB = YES;
 
-//		_textureAtlas = [[CCTextureAtlas alloc] initWithTexture:texture capacity:c];
-//		
-//		if( ! _textureAtlas ) {
-//			CCLOG(@"cocos2d: Could not initialize CCAtlasNode. Invalid Texture");
-//			return nil;
-//		}
+		_blendFunc.src = CC_BLEND_SRC;
+		_blendFunc.dst = CC_BLEND_DST;
+
+		_textureAtlas = [[CCTextureAtlas alloc] initWithTexture:texture capacity:c];
+		
+		if( ! _textureAtlas ) {
+			CCLOG(@"cocos2d: Could not initialize CCAtlasNode. Invalid Texture");
+			[self release];
+			return nil;
+		}
+
+		[self updateBlendFunc];
+		[self updateOpacityModifyRGB];
 
 		[self calculateMaxItems];
 
 		self.quadsToDraw = c;
 
 		// shader stuff
-//		self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionTexture_uColor];
-//		_uniformColor = glGetUniformLocation( _shaderProgram.program, "u_color");
+		self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionTexture_uColor];
+		_uniformColor = glGetUniformLocation( _shaderProgram.program, "u_color");
 	}
 	return self;
 }
 
+-(void) dealloc
+{
+	[_textureAtlas release];
+
+	[super dealloc];
+}
 
 #pragma mark CCAtlasNode - Atlas generation
 
 -(void) calculateMaxItems
 {
-//	CGSize s = [[_textureAtlas texture] contentSize];
-//	_itemsPerColumn = s.height / _itemHeight;
-//	_itemsPerRow = s.width / _itemWidth;
+	CGSize s = [[_textureAtlas texture] contentSize];
+	_itemsPerColumn = s.height / _itemHeight;
+	_itemsPerRow = s.width / _itemWidth;
 }
 
 -(void) updateAtlasValues
@@ -101,42 +124,89 @@
 }
 
 #pragma mark CCAtlasNode - draw
--(void)draw:(CCRenderer *)renderer transform:(const GLKMatrix4 *)transform
+- (void) draw
 {
-//	CC_NODE_DRAW_SETUP(transform);
-//
-//	ccGLBlendFunc( _blendFunc.src, _blendFunc.dst );
-//	
-//	[_shaderProgram setUniformLocation:_uniformColor with4fv:&_displayColor count:1];
-//
-//	[_textureAtlas drawNumberOfQuads:_quadsToDraw fromIndex:0];
+	CC_NODE_DRAW_SETUP();
+
+	ccGLBlendFunc( _blendFunc.src, _blendFunc.dst );
+	
+	GLfloat colors[4] = { _displayedColor.r / 255.0f,
+                          _displayedColor.g / 255.0f,
+                          _displayedColor.b / 255.0f,
+                          _displayedOpacity / 255.0f};
+	[_shaderProgram setUniformLocation:_uniformColor with4fv:colors count:1];
+
+	[_textureAtlas drawNumberOfQuads:_quadsToDraw fromIndex:0];
 }
 
 #pragma mark CCAtlasNode - RGBA protocol
 
-- (CCColor*) color
+- (ccColor3B) color
 {
-	return [CCColor colorWithCcColor3b:_colorUnmodified];
+	if (_opacityModifyRGB)
+		return _colorUnmodified;
+
+	return super.color;
 }
 
--(void) setColor:(CCColor*)color
+-(void) setColor:(ccColor3B)color3
 {
-	ccColor4F color4f = color.ccColor4f;
-	_colorUnmodified = color.ccColor3b;
+	_colorUnmodified = color3;
 
-	// premultiply the alpha back in.
-	color4f.r *= color4f.a;
-	color4f.g *= color4f.a;
-	color4f.b *= color4f.a;
-	color = [CCColor colorWithCcColor4f:color4f];
-	
-	[super setColor:color];
+	if( _opacityModifyRGB ){
+		color3.r = color3.r * _displayedOpacity/255;
+		color3.g = color3.g * _displayedOpacity/255;
+		color3.b = color3.b * _displayedOpacity/255;
+	}
+    [super setColor:color3];
 }
 
--(void) setOpacity:(CGFloat) anOpacity
+-(void) setOpacity:(GLubyte) anOpacity
 {
-	[super setOpacity:anOpacity];
-	[self setColor: [CCColor colorWithCcColor3b:_colorUnmodified]];
+    [super setOpacity:anOpacity];
+
+	// special opacity for premultiplied textures
+	if( _opacityModifyRGB )
+		[self setColor: _colorUnmodified];
+}
+
+-(void) setOpacityModifyRGB:(BOOL)modify
+{
+	ccColor3B oldColor	= self.color;
+	_opacityModifyRGB	= modify;
+	self.color			= oldColor;
+}
+
+-(BOOL) doesOpacityModifyRGB
+{
+	return _opacityModifyRGB;
+}
+
+-(void) updateOpacityModifyRGB
+{
+	_opacityModifyRGB = [_textureAtlas.texture hasPremultipliedAlpha];
+}
+
+#pragma mark CCAtlasNode - CCNodeTexture protocol
+
+-(void) updateBlendFunc
+{
+	if( ! [_textureAtlas.texture hasPremultipliedAlpha] ) {
+		_blendFunc.src = GL_SRC_ALPHA;
+		_blendFunc.dst = GL_ONE_MINUS_SRC_ALPHA;
+	}
+}
+
+-(void) setTexture:(CCTexture2D*)texture
+{
+	_textureAtlas.texture = texture;
+	[self updateBlendFunc];
+	[self updateOpacityModifyRGB];
+}
+
+-(CCTexture2D*) texture
+{
+	return _textureAtlas.texture;
 }
 
 @end

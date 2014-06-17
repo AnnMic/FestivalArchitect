@@ -19,17 +19,12 @@ class GameScene: CCScene {
 
         super.init()
         
-        var background : CCNodeColor = CCNodeColor(color: CCColor.whiteColor())
-        self.addChild(background)
+       // var background : CCNodeColor = CCNodeColor(color: CCColor.whiteColor())
+      //  self.addChild(background)
         
         var label : CCLabelTTF = CCLabelTTF(string: "Hello World", fontName: "Chalkduster", fontSize: 36.0)
-        label.color = CCColor.redColor()
+     //   label.color = CCColor.redColor()
         label.position = CGPointMake(label.contentSize.width ,label.contentSize.height)
         self.addChild(label)
-        
-        
-        
-        
     }
-   
 }

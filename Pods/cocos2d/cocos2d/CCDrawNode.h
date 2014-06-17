@@ -1,6 +1,5 @@
 /* Copyright (c) 2012 Scott Lembcke and Howling Moon Software
- * Copyright (c) 2013-2014 Cocos2D Authors
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -29,53 +28,36 @@
 
 #import "CCNode.h"
 
-/** 
- *  CCDrawNode
- *  Node that draws dots, segments and polygons.
- *  The geometry will be saved, so primitives does not need to be redrawn for each frame
- *  Faster than the "drawing primitives" since they it draws everything in one single batch.
+/** CCDrawNode
+ Node that draws dots, segments and polygons.
+ Faster than the "drawing primitives" since they it draws everything in one single batch.
+ 
+ @since v2.1
  */
 @interface CCDrawNode : CCNode
+{
+	GLuint			_vao;
+	GLuint			_vbo;
+	
+	NSUInteger		_bufferCapacity;
+	GLsizei			_bufferCount;
+	ccV2F_C4B_T2F	*_buffer;
 
+	ccBlendFunc		_blendFunc;
 
-/// -----------------------------------------------------------------------
-/// @name Primitive Drawing Methods
-/// -----------------------------------------------------------------------
+	BOOL _dirty;
+}
 
-/**
- *  Draw a dot at a position, with a given radius and color.
- *
- *  @param pos    Dot position.
- *  @param radius Dot radius.
- *  @param color  Dot color.
- */
--(void)drawDot:(CGPoint)pos radius:(CGFloat)radius color:(CCColor *)color;
+@property(nonatomic, assign) ccBlendFunc blendFunc;
 
-/**
- *  Draw a segment with a radius and color.
- *
- *  @param a      Segment starting point.
- *  @param b      Segment end point.
- *  @param radius Segment radius.
- *  @param color  Segment color.
- */
--(void)drawSegmentFrom:(CGPoint)a to:(CGPoint)b radius:(CGFloat)radius color:(CCColor *)color;
+/** draw a dot at a position, with a given radius and color */
+-(void)drawDot:(CGPoint)pos radius:(CGFloat)radius color:(ccColor4F)color;
 
-/**
- *  Draw a polygon with a fill color and line color.
- *
- *  @param verts Array of CGPoints, containing the vertices.
- *  @param count Number of vertices.
- *  @param fill  Polygon fill color.
- *  @param width Polygon outline width.
- *  @param line  Polygon outline color.
- */
--(void)drawPolyWithVerts:(const CGPoint *)verts count:(NSUInteger)count fillColor:(CCColor *)fill borderWidth:(CGFloat)width  borderColor:(CCColor *)line;
+/** draw a segment with a radius and color */
+-(void)drawSegmentFrom:(CGPoint)a to:(CGPoint)b radius:(CGFloat)radius color:(ccColor4F)color;
 
-
-/// -----------------------------------------------------------------------
-/// @name Draw Node Management
-/// -----------------------------------------------------------------------
+/** draw a polygon with a fill color and line color */
+-(void)drawPolyWithVerts:(CGPoint*)verts count:(NSUInteger)count fillColor:(ccColor4F)fill borderWidth:(CGFloat)width  borderColor:(ccColor4F)line;
 
 /** Clear the geometry in the node's buffer. */
 -(void)clear;

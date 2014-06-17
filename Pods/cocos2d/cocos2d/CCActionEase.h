@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2009 Jason Booth
  * Copyright (c) 2013 Nader Eloshaiker
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,264 +24,269 @@
  *
  */
 
+
 #import "CCActionInterval.h"
 
-#pragma mark - Ease Actions
-/**
- *  CCActionEase adds the ability to modify existing actions to create more realistic effects.
+/** Base class for Easing actions
  */
-@interface CCActionEase : CCActionInterval <NSCopying> {
+@interface CCActionEase : CCActionInterval <NSCopying>
+{
 	CCActionInterval *_inner;
 }
-
-// The inner action.
+/** The inner action */
 @property (nonatomic, readonly) CCActionInterval *inner;
 
-/**
- *  Creates a new basic ease action.
- *
- *  @param action Interval action.
- *
- *  @return New ease action.
- */
-+ (id)actionWithAction:(CCActionInterval*)action;
-
-/**
- *  Initializes a new basic ease action.
- *
- *  @param action Interval action.
- *
- *  @return New ease action.
- */
-- (id)initWithAction:(CCActionInterval*)action;
-
+/** creates the action */
++(id) actionWithAction: (CCActionInterval*) action;
+/** initializes the action */
+-(id) initWithAction: (CCActionInterval*) action;
 @end
 
-
-#pragma mark - Ease Sine Actions
-/**
- *  This action will start the specified action with an sine effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** Base class for Easing actions with rate parameters
  */
-@interface CCActionEaseSineIn : CCActionEase <NSCopying>
-@end
-
-/**
- *  This action will start the specified action with an sine effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
- */
-@interface CCActionEaseSineOut : CCActionEase <NSCopying>
-@end
-
-/**
- *  This action will start the specified action with an sine effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
- */
-@interface CCActionEaseSineInOut : CCActionEase <NSCopying>
-@end
-
-/**
- *  This action will start the specified action with a reversed acceleration.
- *
- *  Note:
- *  This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
- */
-@interface CCActionEaseBackIn : CCActionEase <NSCopying>
-
-@end
-
-
-/**
- *  This action will end the specified action with a reversed acceleration.
- *
- *  Note:
- *  This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
- */
-@interface CCActionEaseBackOut : CCActionEase <NSCopying>
-
-@end
-
-
-/**
- *  This action will start and end the specified action with a reversed acceleration.
- *
- *  Note:
- *  This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
- */
-@interface CCActionEaseBackInOut : CCActionEase <NSCopying>
-
-@end
-
-
-#pragma mark - Ease Rate Actions
-/** 
- *  CCActionEaseRate adds an additional rate property to control the rate of change for the specified action.
- */
-@interface CCActionEaseRate :  CCActionEase <NSCopying> {
+@interface CCEaseRateAction :  CCActionEase <NSCopying>
+{
 	float	_rate;
 }
-
-/** Rate value for the ease action. */
+/** rate value for the actions */
 @property (nonatomic,readwrite,assign) float rate;
-
-/**
- *  Creates the action with the inner action and the rate parameter.
- *
- *  @param action Interval action to ease.
- *  @param rate   Action rate.
- *
- *  @return New rate action.
- */
-+ (id)actionWithAction:(CCActionInterval*)action rate:(float)rate;
-
-/**
- *  Initializes the action with the inner action and the rate parameter.
- *
- *  @param action Interval action to ease.
- *  @param rate   Action rate.
- *
- *  @return New rate action.
- */
-- (id)initWithAction:(CCActionInterval*)action rate:(float)rate;
-
+/** Creates the action with the inner action and the rate parameter */
++(id) actionWithAction: (CCActionInterval*) action rate:(float)rate;
+/** Initializes the action with the inner action and the rate parameter */
+-(id) initWithAction: (CCActionInterval*) action rate:(float)rate;
 @end
 
-
-/** 
- *  This action will accelerate the specified action by the rate.
+/** CCEaseIn action with a rate
  */
-@interface CCActionEaseIn : CCActionEaseRate <NSCopying>
-
+@interface CCEaseIn : CCEaseRateAction <NSCopying>
+{} 
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will deccelerate the specified action by the rate.
+/** CCEaseOut action with a rate
  */
-@interface CCActionEaseOut : CCActionEaseRate <NSCopying>
-
+@interface CCEaseOut : CCEaseRateAction <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will both accelerate and deccelerate the specified action with same rate.
+/** CCEaseInOut action with a rate
  */
-@interface CCActionEaseInOut : CCActionEaseRate <NSCopying>
-
+@interface CCEaseInOut : CCEaseRateAction <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  CCActionEaseElastic adds a period property and applies a dampened oscillation to the specified action.
+/** CCEase Exponential In
  */
-@interface CCActionEaseElastic : CCActionEase <NSCopying> {
+@interface CCEaseExponentialIn : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Exponential Out
+ */
+@interface CCEaseExponentialOut : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Exponential InOut
+ */
+@interface CCEaseExponentialInOut : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** CCEase Polynomial abstract class
+ @since v2.1
+ */
+@interface CCEasePolynomial : CCActionEase <NSCopying> {
+@protected
+    NSUInteger _polynomialOrder;
+    CGFloat _intersetValue; //Used for InOut mid point time calculation
+    BOOL _hasInflection; //odd numbered polynomial orders will display a point of inflection where the curve will invert
+}
+/** Used to determine the steepness of the timing curve.
+ As the value increases, so does the steepness/rate of the curve.
+ Default value is 6, gives a similar curve to EaseExponential.
+ Values less than 6, produces a softer ease action.
+ Values greater than 6, produces a more pronounced action.
+ @warning Value must be greater than 1
+ */
+@property (nonatomic, readwrite, assign) NSUInteger polynomialOrder;
+@end
+
+/** CCEase Polynomial In
+ @since v2.1
+ */
+@interface CCEasePolynomialIn : CCEasePolynomial <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Polynomial Out
+ @since v2.1
+ */
+@interface CCEasePolynomialOut : CCEasePolynomial <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Polynomial InOut
+ @since v2.1
+ */
+@interface CCEasePolynomialInOut : CCEasePolynomial <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Sine In
+ */
+@interface CCEaseSineIn : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Sine Out
+ */
+@interface CCEaseSineOut : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Sine InOut
+ */
+@interface CCEaseSineInOut : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** Ease Elastic abstract class
+ @since v0.8.2
+ */
+@interface CCEaseElastic : CCActionEase <NSCopying>
+{
 	float _period;
 }
 
-/** Period of the wave in radians. Default is 0.3. */
+/** period of the wave in radians. default is 0.3 */
 @property (nonatomic,readwrite) float period;
 
-/**
- *  Creates the action with the inner action and the period in radians (default is 0.3).
- *
- *  @param action Action to apply ease action to.
- *  @param period eriod of wave in radians.
- *
- *  @return New elastic action.
- */
-+ (id)actionWithAction:(CCActionInterval*)action period:(float)period;
-
-/**
- *  Initializes the action with the inner action and the period in radians (default is 0.3).
- *
- *  @param action Action to apply ease action to.
- *  @param period eriod of wave in radians.
- *
- *  @return New elastic action.
- */
-- (id)initWithAction:(CCActionInterval*)action period:(float)period;
-
+/** Creates the action with the inner action and the period in radians (default is 0.3) */
++(id) actionWithAction: (CCActionInterval*) action period:(float)period;
+/** Initializes the action with the inner action and the period in radians (default is 0.3) */
+-(id) initWithAction: (CCActionInterval*) action period:(float)period;
 @end
 
-
-#pragma mark - Elastic Actions
-/**
- *  This action will start the specified action with an elastic effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** Ease Elastic In action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseElasticIn : CCActionEaseElastic <NSCopying>
-
+@interface CCEaseElasticIn : CCEaseElastic <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will end the specified action with an elastic effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** Ease Elastic Out action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseElasticOut : CCActionEaseElastic <NSCopying>
-
+@interface CCEaseElasticOut : CCEaseElastic <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will start and end the specified action with an elastic effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** Ease Elastic InOut action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseElasticInOut : CCActionEaseElastic <NSCopying>
-
+@interface CCEaseElasticInOut : CCEaseElastic <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
+/** CCEaseBounce abstract class.
+ @since v0.8.2
+*/
+@interface CCEaseBounce : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(ccTime) bounceTime:(ccTime) t;
+@end
 
-#pragma mark - Ease Bounce Actions
-/**
- *  CCActionEaseBounce adds a bounceTime property and applies a bouncing effect to the specified action.
+/** CCEaseBounceIn action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
+*/
+@interface CCEaseBounceIn : CCEaseBounce <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
+@end
+
+/** EaseBounceOut action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseBounce : CCActionEase <NSCopying>
-
-// Bounce time.
-- (CCTime)bounceTime:(CCTime)t;
-
+@interface CCEaseBounceOut : CCEaseBounce <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will start the specified action with a bounce effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** CCEaseBounceInOut action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseBounceIn : CCActionEaseBounce <NSCopying>
-
+@interface CCEaseBounceInOut : CCEaseBounce <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will end the specified action with a bounce effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** CCEaseBackIn action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseBounceOut : CCActionEaseBounce <NSCopying>
-
+@interface CCEaseBackIn : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-
-/**
- *  This action will start and end the specified action with a bounce effect.
- *
- *  Note: This action doesn't use a bijective function, actions like CCActionSequence might have an unexpected result when used with this action.
+/** CCEaseBackOut action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
  */
-@interface CCActionEaseBounceInOut : CCActionEaseBounce <NSCopying>
-
+@interface CCEaseBackOut : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
 
-// SpriteBuilder Support Ease
-@interface CCActionEaseInstant : CCActionEase <NSCopying>
-
+/** CCEaseBackInOut action.
+ @warning This action doesn't use a bijective function. Actions like Sequence might have an unexpected result when used with this action.
+ @since v0.8.2
+ */
+@interface CCEaseBackInOut : CCActionEase <NSCopying>
+{}
+// Needed for BridgeSupport
+-(void) update: (ccTime) t;
 @end
-
 

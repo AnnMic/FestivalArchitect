@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,105 +24,22 @@
  *
  */
 
-// -----------------------------------------------------------------
 
 #import "CCScene.h"
 #import "Support/CGPointExtension.h"
 #import "CCDirector.h"
-#import "CCDirector_Private.h"
 
-// -----------------------------------------------------------------
 
-@implementation CCScene {
-
-}
-
-// -----------------------------------------------------------------
-
-// Private method used by the CCNode.scene property.
--(BOOL)isScene {return YES;}
-
--( id )init {
-	if((self = [ super init ])){
-		CGSize s = [CCDirector sharedDirector].designSize;
-		_anchorPoint = ccp(0.0f, 0.0f);
+@implementation CCScene
+-(id) init
+{
+	if( (self=[super init]) ) {
+		CGSize s = [[CCDirector sharedDirector] winSize];
+		self.ignoreAnchorPointForPosition = YES;
+		_anchorPoint = ccp(0.5f, 0.5f);
 		[self setContentSize:s];
-		
-		self.colorRGBA = [CCColor blackColor];
 	}
-	
-	return( self );
+
+	return self;
 }
-
-// -----------------------------------------------------------------
-
-- (void)onEnter
-{
-    [super onEnter];
-    
-    // mark starting scene as dirty, to make sure responder manager is updated
-    [[[CCDirector sharedDirector] responderManager] markAsDirty];
-}
-
-// -----------------------------------------------------------------
-
-- (void)onEnterTransitionDidFinish
-{
-    [super onEnterTransitionDidFinish];
-    
-    // mark starting scene as dirty, to make sure responder manager is updated
-    [[[CCDirector sharedDirector] responderManager] markAsDirty];
-}
-
-// -----------------------------------------------------------------
-
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

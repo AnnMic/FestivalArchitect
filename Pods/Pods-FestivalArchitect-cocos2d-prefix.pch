@@ -3,3 +3,5 @@
 #endif
 
 #import "Pods-FestivalArchitect-environment.h"
+
+#define CC_ENABLE_GL_STATE_CACHE 1

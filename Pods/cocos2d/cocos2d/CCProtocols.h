@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,54 +25,64 @@
 
 #import "ccMacros.h"
 #import "ccTypes.h"
-#import "CCColor.h"
 
 
-@class CCTexture;
+@class CCTexture2D;
 @class CCDirector;
-@class CCBlendMode;
-@class CCShader;
-@class CCRenderState;
 
+#pragma mark - CCRGBAProtocol
 
-#pragma mark - CCShaderProtocol
+/// CC RGBA protocol
+@protocol CCRGBAProtocol <NSObject>
+/** sets and returns the color (tint)
+ @since v0.8
+ */
+@property (nonatomic) ccColor3B color;
+/** returns the displayed color */
+@property (nonatomic, readonly) ccColor3B displayedColor;
+/** whether or not color should be propagated to its children */
+@property (nonatomic, getter = isCascadeColorEnabled) BOOL cascadeColorEnabled;
 
-/// Properties for controlling the shader of a CCNode when it renders.
-/// These properties are already implemented by CCNode, but not normally exposed.
-@protocol CCShaderProtocol <NSObject>
+/** recursive method that updates display color */
+- (void)updateDisplayedColor:(ccColor3B)color;
+
+/** sets and returns the opacity.
+ @warning If the the texture has premultiplied alpha then, the R, G and B channels will be modified.
+ Values goes from 0 to 255, where 255 means fully opaque.
+ */
+@property (nonatomic) GLubyte opacity;
+/** returns the displayed opacity */
+@property (nonatomic, readonly) GLubyte displayedOpacity;
+/** whether or not opacity should be propagated to its children */
+@property (nonatomic, getter = isCascadeOpacityEnabled) BOOL cascadeOpacityEnabled;
+
+/** recursive method that updates the displayed opacity */
+- (void)updateDisplayedOpacity:(GLubyte)opacity;
 
 @optional
-
-/// The shader this node will be drawn using.
-@property(nonatomic, strong) CCShader *shader;
-/// The dictionary of shader uniform values that will be passed to the shader.
-@property(nonatomic, readonly) NSMutableDictionary *shaderUniforms;
-
-/// The rendering state this node will use when rendering.
-@property(nonatomic, readonly) CCRenderState *renderState;
-
+/** sets the premultipliedAlphaOpacity property.
+ If set to NO then opacity will be applied as: glColor(R,G,B,opacity);
+ If set to YES then opacity will be applied as: glColor(opacity, opacity, opacity, opacity );
+ Textures with premultiplied alpha will have this property by default on YES. Otherwise the default value is NO
+ @since v0.8
+ */
+-(void) setOpacityModifyRGB:(BOOL)boolean;
+/** returns whether or not the opacity will be applied using glColor(R,G,B,opacity) or glColor(opacity, opacity, opacity, opacity);
+ @since v0.8
+ */
+ -(BOOL) doesOpacityModifyRGB;
 @end
-
 
 #pragma mark - CCBlendProtocol
 /**
  You can specify the blending function.
+ @since v0.99.0
  */
 @protocol CCBlendProtocol <NSObject>
-
-@optional
-
-/// The blending mode that will be used to render this node.
-@property(nonatomic, readwrite, strong) CCBlendMode *blendMode;
-
-/// The rendering state this node will use when rendering.
-@property(nonatomic, readonly) CCRenderState *renderState;
-
 /** set the source blending function for the texture */
--(void) setBlendFunc:(ccBlendFunc)blendFunc __deprecated;
+-(void) setBlendFunc:(ccBlendFunc)blendFunc;
 /** returns the blending function used for the texture */
--(ccBlendFunc) blendFunc __deprecated;
-
+-(ccBlendFunc) blendFunc;
 @end
 
 
@@ -86,19 +95,14 @@
  else
 	src=GL_SRC_ALPHA dst= GL_ONE_MINUS_SRC_ALPHA
  But you can change the blending function at any time.
+ @since v0.8.0
  */
 @protocol CCTextureProtocol <CCBlendProtocol>
-
-@optional
-
-/// The main texture that will be passed to this node's shader.
-@property(nonatomic, strong) CCTexture *texture;
-
-/// The rendering state this node will use when rendering.
-@property(nonatomic, readonly) CCRenderState *renderState;
-
+/** returns the used texture */
+-(CCTexture2D*) texture;
+/** sets a new texture. it will be retained */
+-(void) setTexture:(CCTexture2D*)texture;
 @end
-
 
 #pragma mark - CCLabelProtocol
 /** Common interface for Labels */
@@ -111,6 +115,8 @@
 -(NSString*) string;
 @optional
 /** sets a new label using a CString.
+ It is faster than setString since it doesn't require to alloc/retain/release an NString object.
+ @since v0.99.0
  */
 -(void) setCString:(char*)label;
 @end
@@ -122,7 +128,7 @@
 
 @optional
 /** Called by CCDirector when the projection is updated, and "custom" projection is used */
--(GLKMatrix4) updateProjection;
+-(void) updateProjection;
 
 #ifdef __CC_PLATFORM_IOS
 /** Returns a Boolean value indicating whether the CCDirector supports the specified orientation. Default value is YES (supports all possible orientations) */

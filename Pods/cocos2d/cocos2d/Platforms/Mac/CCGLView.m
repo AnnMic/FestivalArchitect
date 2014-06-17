@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,12 +35,14 @@
 #import "../../Platforms/CCGL.h"
 #import "CCGLView.h"
 #import "CCDirectorMac.h"
+#import "CCEventDispatcher.h"
 #import "../../ccConfig.h"
 #import "../../ccMacros.h"
 
-#import "CCDirector_Private.h"
 
 @implementation CCGLView
+
+@synthesize eventDelegate = _eventDelegate;
 
 +(void) load_
 {
@@ -77,11 +78,13 @@
 	if (!pixelFormat)
 		CCLOG(@"No OpenGL pixel format");
 
-	if( (self = [super initWithFrame:frameRect pixelFormat:pixelFormat]) ) {
+	if( (self = [super initWithFrame:frameRect pixelFormat:[pixelFormat autorelease]]) ) {
 
 		if( context )
 			[self setOpenGLContext:context];
 
+		// event delegate
+		_eventDelegate = nil;
 	}
 
 	return self;
@@ -124,7 +127,7 @@
 
 	[self lockOpenGLContext];
 
-	NSRect rect = [self convertRectToBacking:self.bounds];
+	NSRect rect = [self bounds];
 
 	CCDirector *director = [CCDirector sharedDirector];
 	[director reshapeProjection: NSSizeToCGSize(rect.size) ];
@@ -161,86 +164,160 @@
 {
 	CCLOGINFO(@"cocos2d: deallocing %@", self);
 
+	[super dealloc];
 }
 
-#pragma mark CCGLView - Mouse Delegate
+#define DISPATCH_EVENT(__event__, __selector__)												\
+	id obj = _eventDelegate;																\
+	CCEventObject *event = [[CCEventObject alloc] init];									\
+	event->event = [__event__ retain];														\
+	event->selector = __selector__;															\
+	[obj performSelector:@selector(dispatchEvent:)											\
+			onThread:[[CCDirector sharedDirector] runningThread]							\
+		  withObject:event																	\
+	   waitUntilDone:NO];																	\
+	[event release];
+
+#pragma mark CCGLView - Mouse events
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager mouseDown:theEvent];
-}
-
-- (void)mouseDragged:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager mouseDragged:theEvent];
-}
-
-- (void)mouseUp:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager mouseUp:theEvent];
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent
 {
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager mouseMoved:theEvent];
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)mouseEntered:(NSEvent *)theEvent
+- (void)mouseDragged:(NSEvent *)theEvent
 {
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager mouseEntered:theEvent];
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)mouseExited:(NSEvent *)theEvent
+- (void)mouseUp:(NSEvent *)theEvent
 {
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager mouseExited:theEvent];
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)rightMouseDown:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager rightMouseDown:theEvent];
+- (void)rightMouseDown:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)rightMouseDragged:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager rightMouseDragged:theEvent];
+- (void)rightMouseDragged:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)rightMouseUp:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager rightMouseUp:theEvent];
+- (void)rightMouseUp:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)otherMouseDown:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager otherMouseDown:theEvent];
+- (void)otherMouseDown:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)otherMouseDragged:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager otherMouseDragged:theEvent];
+- (void)otherMouseDragged:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)otherMouseUp:(NSEvent *)theEvent
-{
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager otherMouseUp:theEvent];
+- (void)otherMouseUp:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
-- (void)scrollWheel:(NSEvent *)theEvent
+- (void)mouseEntered:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)mouseExited:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+-(void) scrollWheel:(NSEvent *)theEvent {
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+#pragma mark CCGLView - Key events
+
+-(BOOL) becomeFirstResponder
 {
-    // dispatch mouse to responder manager
-    [[CCDirector sharedDirector].responderManager scrollWheel:theEvent];
+	return YES;
+}
+
+-(BOOL) acceptsFirstResponder
+{
+	return YES;
+}
+
+-(BOOL) resignFirstResponder
+{
+	return YES;
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)keyUp:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)flagsChanged:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+#pragma mark CCGLView - Touch events
+- (void)touchesBeganWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)touchesMovedWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)touchesEndedWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)touchesCancelledWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+#pragma mark CCGLView - Gesture events
+- (void)beginGestureWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)magnifyWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)smartMagnifyWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)rotateWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)swipeWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
+}
+
+- (void)endGestureWithEvent:(NSEvent *)theEvent
+{
+	DISPATCH_EVENT(theEvent, _cmd);
 }
 
 @end

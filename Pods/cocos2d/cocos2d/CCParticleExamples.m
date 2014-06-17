@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,10 +44,10 @@
 {
 	if( (self=[super initWithTotalParticles:p]) ) {
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,-90);
@@ -62,7 +61,7 @@
 		self.speedVar = 50;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 
 		// angle
@@ -97,7 +96,7 @@
 		// size, in pixels
 		_startSize = 8.0f;
 		_startSizeVar = 2.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
 
@@ -123,10 +122,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -144,7 +143,7 @@
 		_angleVar = 10;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, 60);
 		self.posVar = ccp(40, 20);
 
@@ -156,7 +155,7 @@
 		// size, in pixels
 		_startSize = 54.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per frame
 		_emissionRate = _totalParticles/_life;
@@ -206,10 +205,10 @@
 		self.blendAdditive = YES;
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -228,7 +227,7 @@
 		_angleVar = 360;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 		self.posVar = CGPointZero;
 
@@ -239,7 +238,7 @@
 		// size, in pixels
 		_startSize = 30.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per seconds
 		_emissionRate = _totalParticles/_life;
@@ -283,10 +282,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -308,7 +307,7 @@
 		_angleVar = 360;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 		self.posVar = CGPointZero;
 
@@ -319,7 +318,7 @@
 		// size, in pixels
 		_startSize = 37.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = _totalParticles/_life;
@@ -366,10 +365,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -391,7 +390,7 @@
 		_angleVar = 360;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 		self.posVar = CGPointZero;
 
@@ -402,7 +401,7 @@
 		// size, in pixels
 		_startSize = 30.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = _totalParticles/_life;
@@ -449,10 +448,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(-200,200);
@@ -474,7 +473,7 @@
 		_angleVar = 360;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 		self.posVar = CGPointZero;
 
@@ -485,7 +484,7 @@
 		// size, in pixels
 		_startSize = 60.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = _totalParticles/_life;
@@ -532,10 +531,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -557,7 +556,7 @@
 		_angleVar = 0;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 		self.posVar = CGPointZero;
 
@@ -568,7 +567,7 @@
 		// size, in pixels
 		_startSize = 20.0f;
 		_startSizeVar = 0.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = _totalParticles/_life;
@@ -617,7 +616,7 @@
 		// _duration
 		_duration = 0.1f;
 
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -639,7 +638,7 @@
 		_angleVar = 360;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, winSize.height/2);
 		self.posVar = CGPointZero;
 
@@ -650,7 +649,7 @@
 		// size, in pixels
 		_startSize = 15.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = _totalParticles/_duration;
@@ -697,10 +696,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// Emitter mode: Gravity Mode
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,0);
@@ -718,7 +717,7 @@
 		_angleVar = 5;
 
 		// emitter position
-		CGSize winSize = [[CCDirector sharedDirector] viewSize];
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		self.position = ccp(winSize.width/2, 0);
 		self.posVar = ccp(20, 0);
 
@@ -729,7 +728,7 @@
 		// size, in pixels
 		_startSize = 60.0f;
 		_startSizeVar = 10.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per frame
 		_emissionRate = _totalParticles/_life;
@@ -773,10 +772,10 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
 		// set gravity mode.
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(0,-1);
@@ -795,10 +794,10 @@
 
 		// emitter position
 		self.position = (CGPoint) {
-			[[CCDirector sharedDirector] viewSize].width / 2,
-			[[CCDirector sharedDirector] viewSize].height + 10
+			[[CCDirector sharedDirector] winSize].width / 2,
+			[[CCDirector sharedDirector] winSize].height + 10
 		};
-		self.posVar = ccp( [[CCDirector sharedDirector] viewSize].width / 2, 0 );
+		self.posVar = ccp( [[CCDirector sharedDirector] winSize].width / 2, 0 );
 
 		// _angle
 		_angle = -90;
@@ -811,7 +810,7 @@
 		// size, in pixels
 		_startSize = 10.0f;
 		_startSizeVar = 5.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = 10;
@@ -855,9 +854,9 @@
 	if( (self=[super initWithTotalParticles:p]) ) {
 
 		// _duration
-		_duration = CCParticleSystemDurationInfinity;
+		_duration = kCCParticleDurationInfinity;
 
-		self.emitterMode = CCParticleSystemModeGravity;
+		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
 		self.gravity = ccp(10,-10);
@@ -881,10 +880,10 @@
 
 		// emitter position
 		self.position = (CGPoint) {
-			[[CCDirector sharedDirector] viewSize].width / 2,
-			[[CCDirector sharedDirector] viewSize].height
+			[[CCDirector sharedDirector] winSize].width / 2,
+			[[CCDirector sharedDirector] winSize].height
 		};
-		self.posVar = ccp( [[CCDirector sharedDirector] viewSize].width / 2, 0 );
+		self.posVar = ccp( [[CCDirector sharedDirector] winSize].width / 2, 0 );
 
 		// _life of particles
 		_life = 4.5f;
@@ -893,7 +892,7 @@
 		// size, in pixels
 		_startSize = 4.0f;
 		_startSizeVar = 2.0f;
-		_endSize = CCParticleSystemStartSizeEqualToEndSize;
+		_endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		_emissionRate = 20;

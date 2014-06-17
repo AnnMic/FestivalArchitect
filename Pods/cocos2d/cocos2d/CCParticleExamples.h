@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,49 +24,94 @@
  *
  */
 
+
 #import "ccMacros.h"
-#import "CCParticleSystem.h"
+#import "CCParticleSystemQuad.h"
 
-@interface CCParticleFire: CCParticleSystem
-
+//! A fire particle system
+@interface CCParticleFire: CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleFireworks : CCParticleSystem
-
+//! A fireworks particle system
+@interface CCParticleFireworks : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleSun : CCParticleSystem
-
+//! A sun particle system
+@interface CCParticleSun : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleGalaxy : CCParticleSystem
-
+//! A galaxy particle system
+@interface CCParticleGalaxy : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleFlower : CCParticleSystem
-
+//! A flower particle system
+@interface CCParticleFlower : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleMeteor : CCParticleSystem
-
+//! A meteor particle system
+@interface CCParticleMeteor : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleSpiral : CCParticleSystem
-
+//! An spiral particle system
+@interface CCParticleSpiral : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleExplosion : CCParticleSystem
-
+//! An explosion particle system
+@interface CCParticleExplosion : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleSmoke : CCParticleSystem
-
+//! An smoke particle system
+@interface CCParticleSmoke : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleSnow : CCParticleSystem
-
+//! An snow particle system
+@interface CCParticleSnow : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end
 
-@interface CCParticleRain : CCParticleSystem
-
+//! A rain particle system
+@interface CCParticleRain : CCParticleSystemQuad
+{
+}
+// needed for BridgeSupport
+-(id) init;
 @end

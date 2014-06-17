@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,308 +24,212 @@
  *
  */
 
+
 #import "CCAction.h"
-#import "CCSpriteFrame.h"
 
-//
-// Base class for instant actions, e.g. they are performed immediately.
-//
-@interface CCActionInstant : CCActionFiniteTime <NSCopying>
-
+/** Instant actions are immediate actions. They don't have a duration like
+ the CCIntervalAction actions.
+*/
+@interface CCActionInstant : CCFiniteTimeAction <NSCopying>
+{
+}
+// XXX Needed for BridgeSupport
+-(id) init;
 @end
 
-
-/** This action will remove the target from its parent node. */
-@interface CCActionRemove : CCActionInstant
-
-@end
-
-
-/** 
- *  This action will make the target visible.
+/** Show the node
  */
-@interface CCActionShow : CCActionInstant
-
+ @interface CCShow : CCActionInstant
+{
+}
+// XXX Needed for BridgeSupport
+-(void) update:(ccTime)time;
 @end
 
-
-/** 
- *  This action will hide the target.
+/** Hide the node
  */
-@interface CCActionHide : CCActionInstant
-
+@interface CCHide : CCActionInstant
+{
+}
+-(void) update:(ccTime)time;
 @end
 
-
-/** 
- *  This action toggles the target's visibility.
+/** Toggles the visibility of a node
  */
-@interface CCActionToggleVisibility : CCActionInstant
-
+@interface CCToggleVisibility : CCActionInstant
+{
+}
+-(void) update:(ccTime)time;
 @end
 
-
-/** 
- *  This action flips the target in x direction.
+/** Flips the sprite horizontally
+ @since v0.99.0
  */
-@interface CCActionFlipX : CCActionInstant {
+@interface CCFlipX : CCActionInstant
+{
 	BOOL	_flipX;
 }
-
-
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionFlipX Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates a flip action with x direction flipped or non flipped.
- *
- *  @param x Defines if target is flipped.
- *
- *  @return The flip action object.
- */
-+ (id)actionWithFlipX:(BOOL)x;
-
-
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionFlipX Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes a flip action with x direction flipped or non flipped.
- *
- *  @param x Defines if target is flipped.
- *
- *  @return An initialized flip action object.
- */
-- (id)initWithFlipX:(BOOL)x;
-
++(id) actionWithFlipX:(BOOL)x;
+-(id) initWithFlipX:(BOOL)x;
 @end
 
-
-/** 
- *  This action will lips the target in y direction.
+/** Flips the sprite vertically
+ @since v0.99.0
  */
-@interface CCActionFlipY : CCActionInstant {
+@interface CCFlipY : CCActionInstant
+{
 	BOOL	_flipY;
 }
-
-
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionFlipY Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates a flip action with y direction flipped or non flipped.
- *
- *  @param y Defines if target is flipped.
- *
- *  @return The flip action object.
- */
-+ (id)actionWithFlipY:(BOOL)y;
-
-
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionFlipY Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes a flip action with y direction flipped or non flipped
- *
- *  @param y Defines if target is flipped
- *
- *  @return The initialized flip action object.
- */
-- (id)initWithFlipY:(BOOL)y;
-
++(id) actionWithFlipY:(BOOL)y;
+-(id) initWithFlipY:(BOOL)y;
 @end
 
-
-/** 
- *  This action will teleport a target to the specififed position.
+/** Places the node in a certain position
  */
-@interface CCActionPlace : CCActionInstant <NSCopying> {
+@interface CCPlace : CCActionInstant <NSCopying>
+{
 	CGPoint _position;
 }
-
-
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionPlace Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates a place action using the specified position.
- *
- *  @param pos The position the target is placed at.
- *
- *  @return The place action object.
- */
-+ (id)actionWithPosition:(CGPoint)pos;
-
-
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionPlace Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes a place action using the specified position.
- *
- *  @param pos The position the target is placed at
- *
- *  @return An initialized place action object.
- */
-- (id)initWithPosition:(CGPoint)pos;
-
+/** creates a Place action with a position */
++(id) actionWithPosition: (CGPoint) pos;
+/** Initializes a Place action with a position */
+-(id) initWithPosition: (CGPoint) pos;
 @end
 
-
-/**
- *  This action allows a custom function to be called.
+/** Calls a 'callback'
  */
-@interface CCActionCallFunc : CCActionInstant <NSCopying> {
+@interface CCCallFunc : CCActionInstant <NSCopying>
+{
 	id _targetCallback;
 	SEL _selector;
 }
 
-/** Target function that will be called. */
-@property (nonatomic, readwrite, strong) id targetCallback;
+/** Target that will be called */
+@property (nonatomic, readwrite, retain) id targetCallback;
 
+/** creates the action with the callback */
++(id) actionWithTarget: (id) t selector:(SEL) s;
+/** initializes the action with the callback */
+-(id) initWithTarget: (id) t selector:(SEL) s;
+/** executes the callback */
+-(void) execute;
+@end
 
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionCallFunc Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates the action with the callback.
- *
- *  @param t Target the selector is sent to.
- *  @param s Selector to execute.
- *
- *  @return The call func action object.
+/** Calls a 'callback' with the node as the first argument.
+ N means Node
  */
-+ (id)actionWithTarget:(id)t selector:(SEL)s;
+@interface CCCallFuncN : CCCallFunc
+{
+}
+// XXX: Needed for BridgeSupport
+-(void) execute;
+@end
 
-
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionCallFunc Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes the action with the callback.
- *
- *  @param t Target the selector is sent to
- *  @param s Selector to execute
- *
- *  @return An initialized call func action object.
+typedef void (*CC_CALLBACK_ND)(id, SEL, id, void *);
+/** Calls a 'callback' with the node as the first argument and the 2nd argument is data.
+ * ND means: Node and Data. Data is void *, so it could be anything.
  */
-- (id)initWithTarget:(id)t selector:(SEL)s;
+@interface CCCallFuncND : CCCallFuncN
+{
+	void			*_data;
+	CC_CALLBACK_ND	_callbackMethod;
+}
 
-// Executes the selector on the specific target.
-- (void)execute;
+/** Invocation object that has the target#selector and the parameters */
+@property (nonatomic,readwrite) CC_CALLBACK_ND callbackMethod;
+
+/** creates the action with the callback and the data to pass as an argument */
++(id) actionWithTarget: (id) t selector:(SEL) s data:(void*)d;
+/** initializes the action with the callback and the data to pass as an argument */
+-(id) initWithTarget:(id) t selector:(SEL) s data:(void*) d;
+@end
+
+/** Calls a 'callback' with an object as the first argument.
+ O means Object.
+ @since v0.99.5
+ */
+@interface CCCallFuncO : CCCallFunc
+{
+	id	_object;
+}
+/** object to be passed as argument */
+@property (nonatomic, readwrite, retain) id object;
+
+/** creates the action with the callback and the object to pass as an argument */
++(id) actionWithTarget: (id) t selector:(SEL) s object:(id)object;
+/** initializes the action with the callback and the object to pass as an argument */
+-(id) initWithTarget:(id) t selector:(SEL) s object:(id)object;
 
 @end
 
+#pragma mark Blocks Support
 
-/** 
- *  This actions executes a code block.
+/** Executes a callback using a block.
  */
-@interface CCActionCallBlock : CCActionInstant<NSCopying> {
+@interface CCCallBlock : CCActionInstant<NSCopying>
+{
 	void (^_block)();
 }
 
-
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionCallBlock Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates the action with the specified block, to be used as a callback.
- *  The block will be "copied".
- *
- *  @param block Block to execute.
- *
- *  @return The call block action object.
+/** creates the action with the specified block, to be used as a callback.
+ The block will be "copied".
  */
-+ (id)actionWithBlock:(void(^)())block;
++(id) actionWithBlock:(void(^)())block;
 
-
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionCallBlock Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes the action with the specified block, to be used as a callback.
- *  The block will be "copied".
- *
- *  @param block Block to execute.
- *
- *  @return An initialized call block action object.
+/** initialized the action with the specified block, to be used as a callback.
+ The block will be "copied".
  */
-- (id)initWithBlock:(void(^)())block;
+-(id) initWithBlock:(void(^)())block;
 
-// Executes the selector on the specific target.
-- (void)execute;
-
+/** executes the callback */
+-(void) execute;
 @end
 
+@class CCNode;
 
-/**
- *  This actions changes the target sprite frame.
+/** Executes a callback using a block with a single CCNode parameter.
  */
-@interface CCActionSpriteFrame : CCActionInstant <NSCopying>
+@interface CCCallBlockN : CCActionInstant<NSCopying>
 {
-	CCSpriteFrame* _spriteFrame;
+	void (^_block)(CCNode *);
 }
 
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionSpriteFrame Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Creates the action action with the specified sprite frame.
- *
- *  @param spriteFrame SpriteFrame to use.
- *
- *  @return The sprite frame action object.
+/** creates the action with the specified block, to be used as a callback.
+ The block will be "copied".
  */
-+(id) actionWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
++(id) actionWithBlock:(void(^)(CCNode *node))block;
 
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionSpriteFrame Object
-/// -----------------------------------------------------------------------
-
-/**
- *  Initializes the action action with the specified sprite frame.
- *
- *  @param spriteFrame SpriteFrame to use.
- *
- *  @return An initialized sprite frame action object.
+/** initialized the action with the specified block, to be used as a callback.
+ The block will be "copied".
  */
--(id) initWithSpriteFrame:(CCSpriteFrame*)spriteFrame;
+-(id) initWithBlock:(void(^)(CCNode *node))block;
 
+/** executes the callback */
+-(void) execute;
 @end
 
-/**
- *  This actions plays a sound effect.
+/** Executes a callback using a block with a single NSObject parameter.
+ @since v2.0
  */
-@interface CCActionSoundEffect : CCActionInstant
+@interface CCCallBlockO : CCActionInstant<NSCopying>
 {
-    NSString* _soundFile;
-    float _pitch;
-    float _pan;
-    float _gain;
+	void (^_block)(id object);
+	id _object;
 }
 
-/// -----------------------------------------------------------------------
-/// @name Creating a CCActionSoundEffect Object
-/// -----------------------------------------------------------------------
-+(id) actionWithSoundFile:(NSString*)file pitch:(float)pitch pan:(float) pan gain:(float)gain;
+/** object to be passed to the block */
+@property (nonatomic,retain) id object;
 
+/** creates the action with the specified block, to be used as a callback.
+ The block will be "copied".
+ */
++(id) actionWithBlock:(void(^)(id object))block object:(id)object;
 
-/// -----------------------------------------------------------------------
-/// @name Initializing a CCActionSoundEffect Object
-/// -----------------------------------------------------------------------
+/** initialized the action with the specified block, to be used as a callback.
+ The block will be "copied".
+ */
+-(id) initWithBlock:(void(^)(id object))block object:(id)object;
 
--(id) initWithSoundFile:(NSString*)file pitch:(float)pitch pan:(float) pan gain:(float)gain;
-
+/** executes the callback */
+-(void) execute;
 @end

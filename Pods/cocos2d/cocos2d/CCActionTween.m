@@ -2,7 +2,6 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright 2009 lhunath (Maarten Billemont)
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,12 +28,12 @@
 
 @implementation CCActionTween
 
-+ (id)actionWithDuration:(CCTime)aDuration key:(NSString *)aKey from:(float)aFrom to:(float)aTo {
++ (id)actionWithDuration:(ccTime)aDuration key:(NSString *)aKey from:(float)aFrom to:(float)aTo {
 
-	return [[[self class] alloc] initWithDuration:aDuration key:aKey from:aFrom to:aTo];
+	return [[[[self class] alloc] initWithDuration:aDuration key:aKey from:aFrom to:aTo] autorelease];
 }
 
-- (id)initWithDuration:(CCTime)aDuration key:(NSString *)key from:(float)from to:(float)to {
+- (id)initWithDuration:(ccTime)aDuration key:(NSString *)key from:(float)from to:(float)to {
 
 	if ((self = [super initWithDuration:aDuration])) {
 
@@ -47,6 +46,11 @@
 	return self;
 }
 
+- (void) dealloc
+{
+	[_key release];
+	[super dealloc];
+}
 
 - (void)startWithTarget:aTarget
 {
@@ -54,7 +58,7 @@
 	_delta = _to - _from;
 }
 
-- (void) update:(CCTime) dt
+- (void) update:(ccTime) dt
 {
 	[_target setValue:[NSNumber numberWithFloat:_to  - _delta * (1 - dt)] forKey:_key];
 }

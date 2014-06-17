@@ -31,18 +31,18 @@ class HelloWorldLayer : CCNode{
         //self.addChild(background)
         
         var label : CCLabelTTF = CCLabelTTF(string: "Hello World", fontName: "Chalkduster", fontSize: 36.0)
-        label.color = CCColor.redColor()
+       // label.color = ccc3(<#r: GLubyte#>, <#g: GLubyte#>, <#b: GLubyte#>).redColor()
         label.position = CGPointMake(label.contentSize.width ,label.contentSize.height)
         self.addChild(label)
+            
         
+        var tileMap : CCTMXTiledMap = CCTMXTiledMap.tiledMapWithTMXFile("sample.tmx") as CCTMXTiledMap
+        var background : CCTMXLayer = tileMap.layerNamed("Layer1")
+        print(tileMap.boundingBox())
+        print(background.boundingBox())
         
-        
-        var tileMap : CCTiledMap = CCTiledMap(file: "sample.tmx")
-        var background : CCTiledMapLayer = tileMap.layerNamed("Layer1")
-        
+
         self.addChild(tileMap, z: -1)
-        
-        
     }
     
     

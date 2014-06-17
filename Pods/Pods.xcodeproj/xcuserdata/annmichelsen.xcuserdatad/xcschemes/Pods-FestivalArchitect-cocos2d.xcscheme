@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52BDEBB1EDA64D1EA4D1C111"
+               BlueprintIdentifier = "0C39D93B6E60422DACDE6B08"
                BuildableName = "libPods-FestivalArchitect-cocos2d.a"
                BlueprintName = "Pods-FestivalArchitect-cocos2d"
                ReferencedContainer = "container:Pods.xcodeproj">

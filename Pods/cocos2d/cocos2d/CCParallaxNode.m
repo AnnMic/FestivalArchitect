@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2009-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,16 +26,17 @@
 
 #import "CCParallaxNode.h"
 #import "Support/CGPointExtension.h"
+#import "Support/ccCArray.h"
 
 @interface CGPointObject : NSObject
 {
 	CGPoint	_ratio;
 	CGPoint _offset;
-	CCNode *__unsafe_unretained _child;	// weak ref
+	CCNode *_child;	// weak ref
 }
 @property (nonatomic,readwrite) CGPoint ratio;
 @property (nonatomic,readwrite) CGPoint offset;
-@property (nonatomic,readwrite,unsafe_unretained) CCNode *child;
+@property (nonatomic,readwrite,assign) CCNode *child;
 +(id) pointWithCGPoint:(CGPoint)point offset:(CGPoint)offset;
 -(id) initWithCGPoint:(CGPoint)point offset:(CGPoint)offset;
 @end
@@ -47,7 +47,7 @@
 
 +(id) pointWithCGPoint:(CGPoint)ratio offset:(CGPoint)offset
 {
-	return [[self alloc] initWithCGPoint:ratio offset:offset];
+	return [[[self alloc] initWithCGPoint:ratio offset:offset] autorelease];
 }
 -(id) initWithCGPoint:(CGPoint)ratio offset:(CGPoint)offset
 {
@@ -66,12 +66,20 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-		_parallaxArray = [[NSMutableArray alloc] init];
+		_parallaxArray = ccArrayNew(5);
 		_lastPosition = CGPointMake(-100,-100);
 	}
 	return self;
 }
 
+- (void) dealloc
+{
+	if( _parallaxArray ) {
+		ccArrayFree(_parallaxArray);
+		_parallaxArray = nil;
+	}
+	[super dealloc];
+}
 
 -(void) addChild:(CCNode*)child z:(NSInteger)z tag:(NSInteger)tag
 {
@@ -83,25 +91,31 @@
 	NSAssert( child != nil, @"Argument must be non-nil");
 	CGPointObject *obj = [CGPointObject pointWithCGPoint:ratio offset:offset];
 	obj.child = child;
-    [_parallaxArray addObject:obj];
+	ccArrayAppendObjectWithResize(_parallaxArray, obj);
 
 	CGPoint pos = self.position;
 	pos.x = pos.x * ratio.x + offset.x;
 	pos.y = pos.y * ratio.y + offset.y;
 	child.position = pos;
 
-	[super addChild: child z:z name:child.name];
+	[super addChild: child z:z tag:child.tag];
 }
 
 -(void) removeChild:(CCNode*)node cleanup:(BOOL)cleanup
 {
-	[_parallaxArray removeObject:node];
+	for( unsigned int i=0;i < _parallaxArray->num;i++) {
+		CGPointObject *point = _parallaxArray->arr[i];
+		if( [point.child isEqual:node] ) {
+			ccArrayRemoveObjectAtIndex(_parallaxArray, i);
+			break;
+		}
+	}
 	[super removeChild:node cleanup:cleanup];
 }
 
 -(void) removeAllChildrenWithCleanup:(BOOL)cleanup
 {
-    [_parallaxArray removeAllObjects];
+	ccArrayRemoveAllObjects(_parallaxArray);
 	[super removeAllChildrenWithCleanup:cleanup];
 }
 
@@ -124,13 +138,16 @@
    - using a timer is not guaranteed that it will called after all the positions were updated
    - overriding "draw" will only be precise if the children have a z > 0
 */
--(void) visit:(CCRenderer *)renderer parentTransform:(const GLKMatrix4 *)parentTransform
+-(void) visit
 {
 //	CGPoint pos = _position;
 //	CGPoint	pos = [self convertToWorldSpace:CGPointZero];
 	CGPoint pos = [self absolutePosition_];
 	if( ! CGPointEqualToPoint(pos, _lastPosition) ) {
-        for (CGPointObject *point in _parallaxArray) {
+
+		for(unsigned int i=0; i < _parallaxArray->num; i++ ) {
+
+			CGPointObject *point = _parallaxArray->arr[i];
 			float x = -pos.x + pos.x * point.ratio.x + point.offset.x;
 			float y = -pos.y + pos.y * point.ratio.y + point.offset.y;
 			point.child.position = ccp(x,y);
@@ -139,6 +156,6 @@
 		_lastPosition = pos;
 	}
 
-	[super visit:renderer parentTransform:parentTransform];
+	[super visit];
 }
 @end

@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2011 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +33,7 @@
 
 #import "CCES2Renderer.h"
 
-#import "../CCGL.h"
+#import "../../Support/OpenGL_Internal.h"
 #import "../../ccMacros.h"
 
 @implementation CCES2Renderer
@@ -58,6 +57,7 @@
 
         if (!_context || ![EAGLContext setCurrentContext:_context] )
         {
+            [self release];
             return nil;
         }
 		
@@ -89,7 +89,7 @@
 			
 		}
 
-		CC_CHECK_GL_ERROR_DEBUG();
+		CHECK_GL_ERROR_DEBUG();
     }
 
     return self;
@@ -137,7 +137,7 @@
 		}
 	}
 
-	CC_CHECK_GL_ERROR_DEBUG();
+	CHECK_GL_ERROR();
 
 	if (_depthFormat)
 	{
@@ -163,7 +163,7 @@
 		glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderbuffer);		
 	}
 
-	CC_CHECK_GL_ERROR_DEBUG();
+	CHECK_GL_ERROR();
 
 	GLenum error;
 	if( (error=glCheckFramebufferStatus(GL_FRAMEBUFFER)) != GL_FRAMEBUFFER_COMPLETE)
@@ -241,7 +241,10 @@
     if ([EAGLContext currentContext] == _context)
         [EAGLContext setCurrentContext:nil];
 
+    [_context release];
+    _context = nil;
 
+    [super dealloc];
 }
 
 @end

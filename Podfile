@@ -3,7 +3,7 @@
 
 target "FestivalArchitect" do
 
-pod 'cocos2d','~> 3.0'
+pod 'cocos2d','2.1'
 
 end
 

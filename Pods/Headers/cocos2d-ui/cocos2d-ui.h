@@ -1,1 +1,0 @@
-../../cocos2d/cocos2d-ui/cocos2d-ui.h

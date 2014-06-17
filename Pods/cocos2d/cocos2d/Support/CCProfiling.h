@@ -29,9 +29,10 @@
 
 @class CCProfilingTimer;
 
-/** 
- *  mCCProfiler, cocos2d builtin profiler.
- *  To use it, enable set the CC_ENABLE_PROFILERS=1 in the ccConfig.h file
+/** CCProfiler
+ cocos2d builtin profiler.
+
+ To use it, enable set the CC_ENABLE_PROFILERS=1 in the ccConfig.h file
  */
 @interface CCProfiler : NSObject {
 @public

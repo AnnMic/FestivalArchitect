@@ -2,7 +2,6 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (C) 2010 Lam Pham
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,69 +23,37 @@
  *
  */
 
+
 #import <Foundation/Foundation.h>
-#import "CCProgressNode.h"
+#import "CCProgressTimer.h"
 #import "CCActionInterval.h"
 
 /**
- *  This action is for use with the CCProgressNode to control the progression to animation.
- */
-@interface CCActionProgressTo : CCActionInterval <NSCopying> {
+ Progress to percentage
+@since v0.99.1
+*/
+@interface CCProgressTo : CCActionInterval <NSCopying>
+{
 	float _to;
 	float _from;
 }
-
-/**
- *  Creates a progress action.
- *
- *  @param duration Action duration.
- *  @param percent  Percentage.
- *
- *  @return New prgress action.
- */
-+ (id)actionWithDuration:(CCTime)duration percent:(float)percent;
-
-/**
- *  Initializes a progress action.
- *
- *  @param duration Action duration.
- *  @param percent  Percentage.
- *
- *  @return New progress action.
- */
-- (id)initWithDuration:(CCTime)duration percent:(float)percent;
-
+/** Creates and initializes with a duration and a percent */
++(id) actionWithDuration:(ccTime)duration percent:(float)percent;
+/** Initializes with a duration and a percent */
+-(id) initWithDuration:(ccTime)duration percent:(float)percent;
 @end
 
-
 /**
- *  This action is for use with the CCProgressNode to control the progression from and to animation.
+ Progress from a percentage to another percentage
+ @since v0.99.1
  */
-@interface CCActionProgressFromTo : CCActionInterval <NSCopying> {
+@interface CCProgressFromTo : CCActionInterval <NSCopying>
+{
 	float _to;
 	float _from;
 }
-
-/**
- *  Creates a progress action.
- *
- *  @param duration       Action duration.
- *  @param fromPercentage Percentage to start from.
- *  @param toPercentage   Percentage to end at.
- *
- *  @return New progress action.
- */
-+ (id)actionWithDuration:(CCTime)duration from:(float)fromPercentage to:(float)toPercentage;
-
-/**
- *  Initializes a progress action.
- *
- *  @param duration       Action duration.
- *  @param fromPercentage Percentage to start from.
- *  @param toPercentage   Percentage to end at.
- *
- *  @return New progress action.
- */
-- (id)initWithDuration:(CCTime)duration from:(float)fromPercentage to:(float)toPercentage;
-
+/** Creates and initializes the action with a duration, a "from" percentage and a "to" percentage */
++(id) actionWithDuration:(ccTime)duration from:(float)fromPercentage to:(float) toPercentage;
+/** Initializes the action with a duration, a "from" percentage and a "to" percentage */
+-(id) initWithDuration:(ccTime)duration from:(float)fromPercentage to:(float) toPercentage;
 @end

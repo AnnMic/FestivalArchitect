@@ -3,7 +3,6 @@
  *
  * Copyright (c) 2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * Copyright (c) 2013-2014 Cocos2D Authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,62 +28,47 @@
 
 @class CCAnimation;
 
-/**
- Singleton that manages the CCAnimation cache.
- */
-@interface CCAnimationCache : NSObject {
+/** Singleton that manages the CCAnimation objects.
+ It saves in a cache the animations. You should use this class if you want to save your animations in a cache.
 
-    // Animation cache dictonary.
+ @since v0.99.5
+ */
+@interface CCAnimationCache : NSObject
+{
 	NSMutableDictionary *_animations;
 }
 
-/** Animation cache shared instance. */
-+(CCAnimationCache *) sharedAnimationCache;
+/** Returns the shared instance of the Animation cache */
++ (CCAnimationCache *) sharedAnimationCache;
 
+/** Purges the cache. It releases all the CCAnimation objects and the shared instance.
+ */
++(void)purgeSharedAnimationCache;
 
-/// -----------------------------------------------------------------------
-/// @name Animation Cache Management
-/// -----------------------------------------------------------------------
-
-/** Purges the animation cache. */
-+(void) purgeSharedAnimationCache;
-
-/**
- *  Add the specified animation with name values to the animation cache.
- *
- *  @param animation Animation object.
- *  @param name      Animation key name.
+/** Adds a CCAnimation with a name.
  */
 -(void) addAnimation:(CCAnimation*)animation name:(NSString*)name;
 
-/**
- *  Remove animation from cache using specified key value name.
- *
- *  @param name Animation key name.
+/** Deletes a CCAnimation from the cache.
  */
 -(void) removeAnimationByName:(NSString*)name;
 
-/**
- *  Returns a CCAnimation object from the specified key name value.
- *
- *  @param name Animation key name.
- *
- *  @return CCAnimation object.
+/** Returns a CCAnimation that was previously added.
+ If the name is not found it will return nil.
+ You should retain the returned copy if you are going to use it.
  */
 -(CCAnimation*) animationByName:(NSString*)name;
 
-/**
- *  Add animation to cache using the specified dictionary.
- *
- *  @param dictionary Animation dictionary.
+/** Adds an animation from an NSDictionary
+ Make sure that the frames were previously loaded in the CCSpriteFrameCache.
+ @since v1.1
  */
--(void) addAnimationsWithDictionary:(NSDictionary *)dictionary;
+-(void)addAnimationsWithDictionary:(NSDictionary *)dictionary;
 
-/**
- *  Add an animation to cache using the specified plist file.
- *
- *  @param plist file resource path.
+/** Adds an animation from a plist file.
+ Make sure that the frames were previously loaded in the CCSpriteFrameCache.
+ @since v1.1
  */
--(void) addAnimationsWithFile:(NSString *)plist;
+-(void)addAnimationsWithFile:(NSString *)plist;
 
 @end
