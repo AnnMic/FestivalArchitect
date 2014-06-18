@@ -10,7 +10,7 @@ import Foundation
 
 
 class HelloWorldLayer : CCNode{
-    
+    var tileMap : CCTMXTiledMap?
     
     class func scene() -> CCScene{
         
@@ -25,25 +25,43 @@ class HelloWorldLayer : CCNode{
     
     init(){
         super.init()
-        
-        
-      //  var background : CCNodeColor = CCNodeColor(color: CCColor.whiteColor())
-        //self.addChild(background)
-        
         var label : CCLabelTTF = CCLabelTTF(string: "Hello World", fontName: "Chalkduster", fontSize: 36.0)
-       // label.color = ccc3(<#r: GLubyte#>, <#g: GLubyte#>, <#b: GLubyte#>).redColor()
         label.position = CGPointMake(label.contentSize.width ,label.contentSize.height)
         self.addChild(label)
             
         
-        var tileMap : CCTMXTiledMap = CCTMXTiledMap.tiledMapWithTMXFile("sample.tmx") as CCTMXTiledMap
-        var background : CCTMXLayer = tileMap.layerNamed("Layer1")
-        print(tileMap.boundingBox())
-        print(background.boundingBox())
+        tileMap = CCTMXTiledMap.tiledMapWithTMXFile("TileMap.tmx") as CCTMXTiledMap
+        var background : CCTMXLayer = tileMap!.layerNamed("Background")
+        var objectGroup :CCTMXObjectGroup = tileMap!.objectGroupNamed("Objects")
         
+        var spawnPoint : NSDictionary = objectGroup.objectNamed("SpawnPoint")
+        var x = spawnPoint["x"].floatValue
+        var y = spawnPoint["y"].floatValue
 
+        var player : CCSprite = CCSprite(file: "Player.png")
+        player.position = ccp(x, y)
+        
+        self.addChild(player)
+        self.setViewPointCenter(player.position)
+        
         self.addChild(tileMap, z: -1)
     }
     
+    func setViewPointCenter(position : CGPoint){
+        
+        var winSize : CGSize = CCDirector.sharedDirector().winSize()
+        
+        var x = max(position.x, winSize.width/2)
+        var y = max(position.y, winSize.height/2)
+        x = min(x, (tileMap!.mapSize.width * tileMap!.tileSize.width) - winSize.width/2)
+        y = min(y, (tileMap!.mapSize.height * tileMap!.tileSize.height) - winSize.height/2)
+        var actualPosition = ccp(x, y)
+        
+        
+        var centerOfView = ccp(winSize.width/2, winSize.height/2)
+        var viewPoint = ccpSub(centerOfView, actualPosition)
+        self.position = viewPoint
+
+    }
     
 }

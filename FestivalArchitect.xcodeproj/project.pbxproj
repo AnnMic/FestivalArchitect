@@ -8,13 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		292735EC1950AE4700469243 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292735EB1950AE4700469243 /* RootViewController.swift */; };
-		299423E8194F708F003CB391 /* sample3.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 299423E7194F708F003CB391 /* sample3.tmx */; };
 		299423EA194F70A8003CB391 /* HelloWorldLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299423E9194F70A8003CB391 /* HelloWorldLayer.swift */; };
 		299C998719449E8C00A7648E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C998619449E8C00A7648E /* AppDelegate.swift */; };
-		299C998B19449E8C00A7648E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C998A19449E8C00A7648E /* GameScene.swift */; };
 		299C999219449E8C00A7648E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299C999119449E8C00A7648E /* Images.xcassets */; };
 		299C999E19449E8C00A7648E /* FestivalArchitectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C999D19449E8C00A7648E /* FestivalArchitectTests.swift */; };
-		29E43ABC194F766E00B738FD /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 29E43ABB194F766E00B738FD /* TileMap.tmx */; };
+		29A356471951F8A500C0B319 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A356461951F8A500C0B319 /* Player.png */; };
+		29A356511951F94F00C0B319 /* hit.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29A356491951F94F00C0B319 /* hit.caf */; };
+		29A356521951F94F00C0B319 /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A3564A1951F94F00C0B319 /* meta_tiles.png */; };
+		29A356531951F94F00C0B319 /* move.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29A3564B1951F94F00C0B319 /* move.caf */; };
+		29A356541951F94F00C0B319 /* pickup.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29A3564C1951F94F00C0B319 /* pickup.caf */; };
+		29A356551951F94F00C0B319 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A3564D1951F94F00C0B319 /* Player.png */; };
+		29A356561951F94F00C0B319 /* TileMap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 29A3564E1951F94F00C0B319 /* TileMap.caf */; };
+		29A356571951F94F00C0B319 /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 29A3564F1951F94F00C0B319 /* TileMap.tmx */; };
+		29A356581951F94F00C0B319 /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = 29A356501951F94F00C0B319 /* tmw_desert_spacing.png */; };
 		29E43ABE194F76B600B738FD /* sample.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 29E43ABD194F76B600B738FD /* sample.tmx */; };
 		29E43AC0194F76DA00B738FD /* cobbleset-64_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 29E43ABF194F76DA00B738FD /* cobbleset-64_0.png */; };
 		99D0CE05381040A78E073FFB /* libPods-FestivalArchitect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6548CD41E34E2F8DFC5F93 /* libPods-FestivalArchitect.a */; };
@@ -48,17 +54,23 @@
 		224B3EBDD5FD4A8EA0CDEDAD /* Pods-FestivalArchitect.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FestivalArchitect.xcconfig"; path = "Pods/Pods-FestivalArchitect.xcconfig"; sourceTree = "<group>"; };
 		292735EB1950AE4700469243 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		296B9B78194F276100A2831F /* FestivalArchitect-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FestivalArchitect-Bridging-Header.h"; sourceTree = "<group>"; };
-		299423E7194F708F003CB391 /* sample3.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample3.tmx; sourceTree = "<group>"; };
 		299423E9194F70A8003CB391 /* HelloWorldLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloWorldLayer.swift; sourceTree = "<group>"; };
 		299C998119449E8C00A7648E /* FestivalArchitect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestivalArchitect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C998519449E8C00A7648E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299C998619449E8C00A7648E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		299C998A19449E8C00A7648E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		299C999119449E8C00A7648E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		299C999719449E8C00A7648E /* FestivalArchitectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FestivalArchitectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C999C19449E8C00A7648E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299C999D19449E8C00A7648E /* FestivalArchitectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalArchitectTests.swift; sourceTree = "<group>"; };
-		29E43ABB194F766E00B738FD /* TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TileMap.tmx; sourceTree = "<group>"; };
+		29A356461951F8A500C0B319 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		29A356491951F94F00C0B319 /* hit.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hit.caf; sourceTree = "<group>"; };
+		29A3564A1951F94F00C0B319 /* meta_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meta_tiles.png; sourceTree = "<group>"; };
+		29A3564B1951F94F00C0B319 /* move.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = move.caf; sourceTree = "<group>"; };
+		29A3564C1951F94F00C0B319 /* pickup.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pickup.caf; sourceTree = "<group>"; };
+		29A3564D1951F94F00C0B319 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		29A3564E1951F94F00C0B319 /* TileMap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TileMap.caf; sourceTree = "<group>"; };
+		29A3564F1951F94F00C0B319 /* TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TileMap.tmx; sourceTree = "<group>"; };
+		29A356501951F94F00C0B319 /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tmw_desert_spacing.png; sourceTree = "<group>"; };
 		29E43ABD194F76B600B738FD /* sample.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sample.tmx; sourceTree = "<group>"; };
 		29E43ABF194F76DA00B738FD /* cobbleset-64_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cobbleset-64_0.png"; sourceTree = "<group>"; };
 		6C6548CD41E34E2F8DFC5F93 /* libPods-FestivalArchitect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FestivalArchitect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,11 +98,11 @@
 		299C997819449E8C00A7648E = {
 			isa = PBXGroup;
 			children = (
+				29A356481951F94F00C0B319 /* TileGameResources */,
+				29A356461951F8A500C0B319 /* Player.png */,
 				29E43ABF194F76DA00B738FD /* cobbleset-64_0.png */,
 				29E43ABD194F76B600B738FD /* sample.tmx */,
-				29E43ABB194F766E00B738FD /* TileMap.tmx */,
 				296B9B78194F276100A2831F /* FestivalArchitect-Bridging-Header.h */,
-				299423E7194F708F003CB391 /* sample3.tmx */,
 				299C998319449E8C00A7648E /* FestivalArchitect */,
 				299C999A19449E8C00A7648E /* FestivalArchitectTests */,
 				299C998219449E8C00A7648E /* Products */,
@@ -112,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				299C998619449E8C00A7648E /* AppDelegate.swift */,
-				299C998A19449E8C00A7648E /* GameScene.swift */,
 				299C999119449E8C00A7648E /* Images.xcassets */,
 				299C998419449E8C00A7648E /* Supporting Files */,
 				299423E9194F70A8003CB391 /* HelloWorldLayer.swift */,
@@ -144,6 +155,21 @@
 				299C999C19449E8C00A7648E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		29A356481951F94F00C0B319 /* TileGameResources */ = {
+			isa = PBXGroup;
+			children = (
+				29A356491951F94F00C0B319 /* hit.caf */,
+				29A3564A1951F94F00C0B319 /* meta_tiles.png */,
+				29A3564B1951F94F00C0B319 /* move.caf */,
+				29A3564C1951F94F00C0B319 /* pickup.caf */,
+				29A3564D1951F94F00C0B319 /* Player.png */,
+				29A3564E1951F94F00C0B319 /* TileMap.caf */,
+				29A3564F1951F94F00C0B319 /* TileMap.tmx */,
+				29A356501951F94F00C0B319 /* tmw_desert_spacing.png */,
+			);
+			path = TileGameResources;
 			sourceTree = "<group>";
 		};
 		A3967868B18346F8B7E54674 /* Frameworks */ = {
@@ -240,9 +266,16 @@
 			files = (
 				29E43AC0194F76DA00B738FD /* cobbleset-64_0.png in Resources */,
 				299C999219449E8C00A7648E /* Images.xcassets in Resources */,
-				29E43ABC194F766E00B738FD /* TileMap.tmx in Resources */,
-				299423E8194F708F003CB391 /* sample3.tmx in Resources */,
+				29A356551951F94F00C0B319 /* Player.png in Resources */,
+				29A356581951F94F00C0B319 /* tmw_desert_spacing.png in Resources */,
+				29A356561951F94F00C0B319 /* TileMap.caf in Resources */,
+				29A356521951F94F00C0B319 /* meta_tiles.png in Resources */,
+				29A356471951F8A500C0B319 /* Player.png in Resources */,
+				29A356511951F94F00C0B319 /* hit.caf in Resources */,
 				29E43ABE194F76B600B738FD /* sample.tmx in Resources */,
+				29A356571951F94F00C0B319 /* TileMap.tmx in Resources */,
+				29A356541951F94F00C0B319 /* pickup.caf in Resources */,
+				29A356531951F94F00C0B319 /* move.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +327,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				292735EC1950AE4700469243 /* RootViewController.swift in Sources */,
-				299C998B19449E8C00A7648E /* GameScene.swift in Sources */,
 				299423EA194F70A8003CB391 /* HelloWorldLayer.swift in Sources */,
 				299C998719449E8C00A7648E /* AppDelegate.swift in Sources */,
 			);
