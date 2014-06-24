@@ -12,6 +12,7 @@ import Foundation
 
 class HelloWorldLayer : CCLayer{
     var tileMap : CCTMXTiledMap?
+    var player : CCSprite?
     
     class func scene() -> CCScene{
         
@@ -43,14 +44,13 @@ class HelloWorldLayer : CCLayer{
         var x = spawnPoint["x"].floatValue
         var y = spawnPoint["y"].floatValue
 
-        var player : CCSprite = CCSprite(file: "Player.png")
-        player.position = ccp(x, y)
+        player = CCSprite(file: "Player.png")
+        player!.position = ccp(x, y)
         
         self.addChild(player)
-        self.setViewPointCenter(player.position)
+        self.setViewPointCenter(player!.position)
         
         self.addChild(tileMap, z: -1)
-        
         
     }
     
@@ -81,13 +81,30 @@ class HelloWorldLayer : CCLayer{
         oldTouchLocation = self.convertToNodeSpace(oldTouchLocation)
         
         var translation = ccpSub(touchLocation, oldTouchLocation)
-        self.panForTranslation(translation)
+        panForTranslation(translation)
         
     }
   
     func panForTranslation(translation : CGPoint) {
         var newPoint : CGPoint = ccpAdd(self.position, translation)
-        self.position = newPoint
+        self.position = boundLayerPos(newPoint)
+    }
+    
+    func boundLayerPos(newPos : CGPoint) -> CGPoint{
+        var winSize : CGSize = CCDirector.sharedDirector().winSize()
+        var retval : CGPoint = newPos
+        retval.x = min(retval.x,0)
+        retval.x = max(retval.x,-tileMap!.contentSize.width + winSize.width)
+        
+        retval.y = min(retval.y,0)
+        retval.y = max(retval.y,-tileMap!.contentSize.height + winSize.height)
+        
+        return retval
+    }
+    
+    
+    func setPlayerPosition(position : CGPoint){
+        player!.position = position
     }
 
 }
