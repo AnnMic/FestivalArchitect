@@ -9,7 +9,8 @@
 import Foundation
 
 
-class HelloWorldLayer : CCNode{
+
+class HelloWorldLayer : CCLayer{
     var tileMap : CCTMXTiledMap?
     
     class func scene() -> CCScene{
@@ -25,6 +26,10 @@ class HelloWorldLayer : CCNode{
     
     init(){
         super.init()
+        
+        
+        CCDirector.sharedDirector().touchDispatcher.addTargetedDelegate(self, priority: 0, swallowsTouches: true)
+        
         var label : CCLabelTTF = CCLabelTTF(string: "Hello World", fontName: "Chalkduster", fontSize: 36.0)
         label.position = CGPointMake(label.contentSize.width ,label.contentSize.height)
         self.addChild(label)
@@ -45,6 +50,8 @@ class HelloWorldLayer : CCNode{
         self.setViewPointCenter(player.position)
         
         self.addChild(tileMap, z: -1)
+        
+        
     }
     
     func setViewPointCenter(position : CGPoint){
@@ -61,7 +68,26 @@ class HelloWorldLayer : CCNode{
         var centerOfView = ccp(winSize.width/2, winSize.height/2)
         var viewPoint = ccpSub(centerOfView, actualPosition)
         self.position = viewPoint
-
+    }
+    override func ccTouchBegan(touch: UITouch!, withEvent event: UIEvent!) -> Bool {
+        return true
     }
     
+
+    override func ccTouchMoved(touch: UITouch!, withEvent event: UIEvent!){
+        var touchLocation : CGPoint = self.convertTouchToNodeSpace(touch)
+        var oldTouchLocation = touch.previousLocationInView(touch.view)
+        oldTouchLocation = CCDirector.sharedDirector().convertToGL(oldTouchLocation)
+        oldTouchLocation = self.convertToNodeSpace(oldTouchLocation)
+        
+        var translation = ccpSub(touchLocation, oldTouchLocation)
+        self.panForTranslation(translation)
+        
+    }
+  
+    func panForTranslation(translation : CGPoint) {
+        var newPoint : CGPoint = ccpAdd(self.position, translation)
+        self.position = newPoint
+    }
+
 }
