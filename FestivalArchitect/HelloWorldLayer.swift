@@ -13,7 +13,9 @@ import Foundation
 class HelloWorldLayer : CCLayer{
     var tileMap : CCTMXTiledMap?
     var player : CCSprite?
-    
+    var meta : CCTMXLayer?
+    var foreground : CCTMXLayer?
+
     class func scene() -> CCScene{
         
         var scene : CCScene = CCScene.node() as CCScene
@@ -38,6 +40,10 @@ class HelloWorldLayer : CCLayer{
         
         tileMap = CCTMXTiledMap.tiledMapWithTMXFile("TileMap.tmx") as CCTMXTiledMap
         var background : CCTMXLayer = tileMap!.layerNamed("Background")
+        foreground = tileMap!.layerNamed("Foreground")
+        meta = tileMap!.layerNamed("Meta")
+        meta!.visible = false;
+        
         var objectGroup :CCTMXObjectGroup = tileMap!.objectGroupNamed("Objects")
         
         var spawnPoint : NSDictionary = objectGroup.objectNamed("SpawnPoint")
@@ -47,11 +53,28 @@ class HelloWorldLayer : CCLayer{
         player = CCSprite(file: "Player.png")
         player!.position = ccp(x, y)
         
+    
+        var spawnPointPerson : NSDictionary = objectGroup.objectNamed("PeopleSpawn1")
+        var xPerson = spawnPointPerson["x"].floatValue
+        var yPerson = spawnPointPerson["y"].floatValue
+        addPersonAtX(ccp(xPerson,yPerson))
+        
         self.addChild(player)
         self.setViewPointCenter(player!.position)
         
         self.addChild(tileMap, z: -1)
         
+        addSpriteToTileMap()
+        
+    }
+    func addSpriteToTileMap(){
+        var tileAddPosition :CGPoint = player!.position
+        var test = CCSprite(file: "enemy1.png")
+     
+        test.anchorPoint = CGPointZero
+        test.position = tileAddPosition
+        tileMap!.addChild(test, z: 10)
+
     }
     
     func setViewPointCenter(position : CGPoint){
@@ -73,6 +96,35 @@ class HelloWorldLayer : CCLayer{
         return true
     }
     
+    override func ccTouchEnded(touch: UITouch!, withEvent event: UIEvent!) {
+        var touchLocation : CGPoint = touch.locationInView(touch.view)
+        touchLocation = CCDirector.sharedDirector().convertToGL(touchLocation)
+        touchLocation = self.convertToNodeSpace(touchLocation)
+        
+        var playerPos : CGPoint = player!.position
+        var diff : CGPoint = ccpSub(touchLocation, playerPos)
+        
+        if(abs(diff.x) > abs(diff.y)){
+            if(diff.x > 0){
+                playerPos.x += tileMap!.tileSize.width
+            }
+            else{
+                playerPos.x -= tileMap!.tileSize.width
+
+            }
+        }
+        else{
+            if(diff.y > 0){
+                playerPos.y += tileMap!.tileSize.height
+            }
+            else{
+                playerPos.y -= tileMap!.tileSize.height
+                
+            }
+        }
+        setPlayerPosition(playerPos)
+        
+    }
 
     override func ccTouchMoved(touch: UITouch!, withEvent event: UIEvent!){
         var touchLocation : CGPoint = self.convertTouchToNodeSpace(touch)
@@ -102,9 +154,58 @@ class HelloWorldLayer : CCLayer{
         return retval
     }
     
+    func tileCoordForPosition(position : CGPoint) -> CGPoint{
+        var x = position.x / tileMap!.tileSize.width
+        var y = ((tileMap!.mapSize.height * tileMap!.tileSize.height) - position.y) / tileMap!.tileSize.height
+        return ccp(x,y)
+        
+    }
     
     func setPlayerPosition(position : CGPoint){
+        var tileCoord : CGPoint = tileCoordForPosition(position)
+        var tileGid = meta!.tileGIDAt(tileCoord)
+        
+        if(tileGid != nil){
+            var properties = tileMap!.propertiesForGID(tileGid)
+
+            if(properties != nil){
+                var collision : NSString = properties.objectForKey("Collidable") as NSString
+                if(collision != nil && collision.isEqualToString("True") ){
+                    return
+                }
+                var collectable : NSString = properties.objectForKey("Collectable") as NSString
+                if(collectable != nil && collectable.isEqualToString("True") ){
+                    meta!.removeTileAt(tileCoord)
+                    foreground!.removeTileAt(tileCoord)
+                }
+                
+            }
+            
+        }
+        
         player!.position = position
+    }
+
+
+    func addPersonAtX(position :CGPoint){
+        var person: CCSprite = CCSprite(file: "Player.png")
+        person.position = position
+        self.addChild(person)
+
+        animatePerson(person)
+    }
+    
+    func personMoveFinished(sender : AnyObject){
+
+    }
+    
+    func animatePerson(person : CCSprite){
+        var actualDuration :ccTime = 3.0
+        var actionMove : CCAction = CCMoveTo.actionWithDuration(actualDuration, position: CGPointMake(player!.position.x, player!.position.y)) as CCAction
+        var actionMoveDone = CCCallFunc.actionWithTarget(self, selector: "personMoveFinished:")
+       // CCSequence.actions(actionMove,actionMoveDone)
+        var arrayActions = [actionMove, actionMoveDone]
+        person.runAction(CCSequence.actionWithArray(arrayActions) as CCAction)
     }
 
 }
