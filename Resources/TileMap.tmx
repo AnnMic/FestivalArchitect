@@ -31,7 +31,7 @@
  </objectgroup>
  <layer name="Foreground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt07EJAAAIA0E3cf8tHcDGQgThrkod+Ag+yMEGZnQDnS7u+RwAAAAAAABgXwEwzwC7
+   eJzt08ENgCAMBVBmcAFHkP2n8+TFKBiNSpv3LpBwaWl/KUQwX7gfWV6ohee2udRfq7gv+l71cgNPRM11xlzU3TmajH/eM+oszkyNt2i9tNSSr58sMvUCAAAAAADwlRU4MwM6
   </data>
  </layer>
  <layer name="Meta" width="50" height="50">

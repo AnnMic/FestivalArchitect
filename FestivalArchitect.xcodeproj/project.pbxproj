@@ -18,10 +18,12 @@
 		296841F51959EAA700AD9272 /* sample.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 296841F01959EAA700AD9272 /* sample.tmx */; };
 		296841F61959EAA700AD9272 /* TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 296841F11959EAA700AD9272 /* TileMap.tmx */; };
 		297BD9C11959E174005896A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297BD9C01959E174005896A6 /* Main.storyboard */; };
-		299423EA194F70A8003CB391 /* HelloWorldLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299423E9194F70A8003CB391 /* HelloWorldLayer.swift */; };
+		299423EA194F70A8003CB391 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299423E9194F70A8003CB391 /* GameLayer.swift */; };
 		299C998719449E8C00A7648E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C998619449E8C00A7648E /* AppDelegate.swift */; };
 		299C999219449E8C00A7648E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 299C999119449E8C00A7648E /* Images.xcassets */; };
 		299C999E19449E8C00A7648E /* FestivalArchitectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299C999D19449E8C00A7648E /* FestivalArchitectTests.swift */; };
+		29B3E109195F572900E7449B /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3E108195F572900E7449B /* HudLayer.swift */; };
+		29C416D419647E8500EA305E /* water_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C416D319647E8500EA305E /* water_tile.png */; };
 		99D0CE05381040A78E073FFB /* libPods-FestivalArchitect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C6548CD41E34E2F8DFC5F93 /* libPods-FestivalArchitect.a */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +65,7 @@
 		296841F11959EAA700AD9272 /* TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TileMap.tmx; sourceTree = "<group>"; };
 		296B9B78194F276100A2831F /* FestivalArchitect-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FestivalArchitect-Bridging-Header.h"; sourceTree = "<group>"; };
 		297BD9C01959E174005896A6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		299423E9194F70A8003CB391 /* HelloWorldLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloWorldLayer.swift; sourceTree = "<group>"; };
+		299423E9194F70A8003CB391 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		299C998119449E8C00A7648E /* FestivalArchitect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestivalArchitect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C998519449E8C00A7648E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299C998619449E8C00A7648E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,8 @@
 		299C999719449E8C00A7648E /* FestivalArchitectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FestivalArchitectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		299C999C19449E8C00A7648E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299C999D19449E8C00A7648E /* FestivalArchitectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalArchitectTests.swift; sourceTree = "<group>"; };
+		29B3E108195F572900E7449B /* HudLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
+		29C416D319647E8500EA305E /* water_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_tile.png; sourceTree = "<group>"; };
 		6C6548CD41E34E2F8DFC5F93 /* libPods-FestivalArchitect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FestivalArchitect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,6 +100,7 @@
 		296841EC1959EAA700AD9272 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				29C416D319647E8500EA305E /* water_tile.png */,
 				2957CF37195B5FCF008ED5AE /* enemy1.png */,
 				291B76841959F037002815CC /* tmw_desert_spacing.png */,
 				296841ED1959EAA700AD9272 /* cobbleset-64_0.png */,
@@ -136,10 +141,11 @@
 				299C998619449E8C00A7648E /* AppDelegate.swift */,
 				299C999119449E8C00A7648E /* Images.xcassets */,
 				299C998419449E8C00A7648E /* Supporting Files */,
-				299423E9194F70A8003CB391 /* HelloWorldLayer.swift */,
+				299423E9194F70A8003CB391 /* GameLayer.swift */,
 				292735EB1950AE4700469243 /* RootViewController.swift */,
 				2957CF33195B3DB8008ED5AE /* AIPlayer.swift */,
 				2957CF35195B3F42008ED5AE /* Person.swift */,
+				29B3E108195F572900E7449B /* HudLayer.swift */,
 			);
 			path = FestivalArchitect;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 				299C999219449E8C00A7648E /* Images.xcassets in Resources */,
 				296841F31959EAA700AD9272 /* meta_tiles.png in Resources */,
 				296841F61959EAA700AD9272 /* TileMap.tmx in Resources */,
+				29C416D419647E8500EA305E /* water_tile.png in Resources */,
 				291B76851959F037002815CC /* tmw_desert_spacing.png in Resources */,
 				2957CF38195B5FCF008ED5AE /* enemy1.png in Resources */,
 				297BD9C11959E174005896A6 /* Main.storyboard in Resources */,
@@ -320,10 +327,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B3E109195F572900E7449B /* HudLayer.swift in Sources */,
 				2957CF36195B3F42008ED5AE /* Person.swift in Sources */,
 				2957CF34195B3DB8008ED5AE /* AIPlayer.swift in Sources */,
 				292735EC1950AE4700469243 /* RootViewController.swift in Sources */,
-				299423EA194F70A8003CB391 /* HelloWorldLayer.swift in Sources */,
+				299423EA194F70A8003CB391 /* GameLayer.swift in Sources */,
 				299C998719449E8C00A7648E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
