@@ -35,19 +35,15 @@ class TileMapNode : CCNode {
         
         _terrainLayer = _tileMap.layerNamed("Foreground")
         
-        
         var objectGroup:CCTiledMapObjectGroup = _tileMap.objectGroupNamed("Objects")
         var spawnPointDict : NSDictionary = objectGroup.objectNamed("SpawnPoint")
         var x : CGFloat = spawnPointDict["x"] as CGFloat
         var y : CGFloat = spawnPointDict["y"] as CGFloat
         _spawnPoint = CGPointMake(x, y)
         
-        
         _sprite = CCSprite(imageNamed: "Player.png")
         _sprite!.position = CGPoint(x: x, y: y)
         addChild(_sprite)
-        
-        
     }
     
     func addSpriteToTileMap(tileGid : UInt32, position : CGPoint){
@@ -65,6 +61,4 @@ class TileMapNode : CCNode {
         println("newPos \(newPos)")
         return newPos
     }
-
-
 }

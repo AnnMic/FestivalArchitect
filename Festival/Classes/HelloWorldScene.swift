@@ -25,6 +25,7 @@ class HelloWorldScene : CCScene {
     
     var hudLayer:HudLayer!
     var tileMapNode:TileMapNode!
+    var selectedSprite:CCSprite!
 
     override init()
     {
@@ -41,9 +42,8 @@ class HelloWorldScene : CCScene {
 
         _tileMap = tileMapNode._tileMap
         
-        hudLayer = HudLayer()
+        hudLayer = HudLayer(scene:self)
         addChild(hudLayer, z:1)
-
 
         environment = Environment()
         moveSystem = MoveSystem(env: environment)
@@ -87,15 +87,37 @@ class HelloWorldScene : CCScene {
     override func touchBegan(touch: UITouch!, withEvent event: UIEvent!)
     {
         let touchLoc:CGPoint = touch.locationInNode(self)
-        selectNodeForTouch(touchLoc)
     }
     
-    func selectNodeForTouch(touchLocation : CGPoint) {
-        var selectedItem:UInt32 = UInt32(hudLayer.selectedItem)
-        var gid : UInt32 = selectedItem
-        tileMapNode.addSpriteToTileMap(gid, position: touchLocation)
+    func selectSpriteForTouch(touchLocation : CGPoint) {
+        if hudLayer.sprite != nil {
+            if(CGRectContainsPoint(hudLayer.sprite.boundingBox(), touchLocation)){
+                selectedSprite = hudLayer.sprite
+            }
+            else{
+                selectedSprite = nil
+            }
+        }
+
     }
-    
+    func panForTranslation(translation : CGPoint){
+        if (selectedSprite != nil) {
+            let newPos:CGPoint = CGPointMake(selectedSprite.position.x+translation.x, selectedSprite.position.y+translation.y)
+            selectedSprite.position = newPos
+        }
+        else{
+            var curPos : CGPoint = _tileMap.position
+            var newPos : CGPoint = CGPointMake(curPos.x + translation.x, curPos.y + translation.y)
+            _tileMap.position = boundLayerPos(newPos)
+            
+            tileMapNode.panningPosition = newPos
+        }
+    }
+    func placeGid(){
+          var selectedItem:UInt32 = UInt32(hudLayer.selectedItem)
+          var gid : UInt32 = selectedItem
+          tileMapNode.addSpriteToTileMap(gid, position: hudLayer.sprite.position)
+    }
        
     func onBackClicked(sender:AnyObject)
     {
@@ -113,18 +135,19 @@ class HelloWorldScene : CCScene {
     
     func handlePan(sender : UIPanGestureRecognizer) {
         if(sender.state == UIGestureRecognizerState.Began){
-            
+            var touchLocation:CGPoint = sender.locationInView(sender.view)
+            touchLocation = CCDirector.sharedDirector().convertToGL(touchLocation)
+            touchLocation = convertToNodeSpace(touchLocation)
+            selectSpriteForTouch(touchLocation)
         }
         else if(sender.state == UIGestureRecognizerState.Changed){
             var translation : CGPoint = sender.translationInView(sender.view!)
             translation = CGPointMake(translation.x, -translation.y)
-            var curPos : CGPoint = _tileMap.position
             
-            var newPos : CGPoint = CGPointMake(curPos.x + translation.x, curPos.y + translation.y)
-            _tileMap.position = boundLayerPos(newPos)
+            panForTranslation(translation)
             sender.setTranslation(CGPointZero, inView: sender.view)
             
-            tileMapNode.panningPosition = newPos
+
         }
         else if(sender.state == UIGestureRecognizerState.Ended){
             

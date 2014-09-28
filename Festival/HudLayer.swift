@@ -11,27 +11,40 @@ import Foundation
 
 class HudLayer : CCNode {
     var selectedItem:Int = 0
-
+    var sprite :CCSprite!
+    var helloScene: HelloWorldScene!
+    var confirm:CCButton!
+    var cancel:CCButton!
     
-    override init()
+    init(scene: HelloWorldScene)
     {
         super.init()
+        helloScene = scene
         
-        createEditorButton()
+        setupButtons()
+    }
+    func setupButtons(){
+        createButton("[ EDITOR ]", position: CGPointMake(50, 50),selector: "onEditorClicked:")
+        
     }
     
-    func createEditorButton(){
-        // Create a back button
-        let editorButton:CCButton = CCButton(title: "[ Editor ]", fontName: "Verdana-Bold", fontSize: 18.0)
-        editorButton.position = CGPoint(x: 50, y: 50) // Top Right of screen
-        editorButton.setTarget(self, selector: "onEditorClicked:")
-        addChild(editorButton)
+    func createButton(title:String, position:CGPoint, selector:Selector) -> CCButton {
+        let button:CCButton = CCButton(title: title, fontName: "Verdana-Bold", fontSize: 18.0)
+        button.position = position
+        button.setTarget(self, selector: selector)
+        addChild(button)
+        return button
+    }
+    
+    func itemButton(){
+        confirm = createButton("[Confirm]", position: CGPointMake(700, 50),selector: "onConfirmClicked:")
+        cancel = createButton("[Cancel]", position: CGPointMake(850, 50),selector: "onCancelClicked:")
     }
     
     func setupButton(){
         decorationButton("bush_green.png",position: CGPointMake(200, 40), tag: "48")
-        decorationButton("sign.png",position: CGPointMake(250, 40), tag: "47")
-        decorationButton("stone.png",position: CGPointMake(300, 40), tag: "46")
+        decorationButton("sign.png",position: CGPointMake(250, 40), tag: "46")
+        decorationButton("stone.png",position: CGPointMake(300, 40), tag: "47")
     }
     func decorationButton(spriteName : String, position: CGPoint, tag : String){
         let spriteFrame:CCSpriteFrame = CCSpriteFrame.frameWithImageNamed(spriteName) as CCSpriteFrame
@@ -46,12 +59,13 @@ class HudLayer : CCNode {
     }
     
     func onDecorationClicked(sender:CCButton){
-        sender.selected = true
+        itemButton()
         selectedItem = sender.title.toInt()!
         addDragSprite()
     }
+    
     func addDragSprite(){
-        let sprite :CCSprite = CCSprite(imageNamed: "bush_green.png")
+        sprite = CCSprite(imageNamed: "bush_green.png")
         sprite.position = CGPointMake(500, 500)
         addChild(sprite)
     }
@@ -59,18 +73,21 @@ class HudLayer : CCNode {
     func onEditorClicked(sender:AnyObject)
     {
         setupButton()
-    //    var editorPopup:EditorPopupNode = EditorPopupNode()
-    //    editorPopup.contentSize = CGSizeMake(50, 50)
-     //   addChild(editorPopup)
-        
-      /*  let editorViewController:EditorPopupViewController = EditorPopupViewController()
-        var editorFrame : CGRect = editorViewController.view.frame
-        editorViewController.view.frame = CGRect(x: 0, y: 0, width: editorFrame.size.width, height: editorFrame.size.height)
-
-        CCDirector.sharedDirector().addChildViewController(editorViewController)
-        CCDirector.sharedDirector().view.addS*/
         
     }
     
+    func onConfirmClicked(sender:AnyObject) {
+        cleanup()
+        helloScene.placeGid()
+    }
+    
+    func onCancelClicked(sender:AnyObject) {
+        cleanup()
 
+    }
+    func cleanup(){
+        removeChild(sprite)
+        removeChild(confirm)
+        removeChild(cancel)
+    }
 }
