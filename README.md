@@ -1,4 +1,0 @@
-FestivalArchitect
-=================
-
-Everything is awesome!
