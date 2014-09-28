@@ -223,6 +223,10 @@
 		29DF3CD819D77390004DD780 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF3CD719D77390004DD780 /* selected.png */; };
 		29DF3CDA19D81868004DD780 /* EditorPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF3CD919D81868004DD780 /* EditorPopupViewController.swift */; };
 		29DF3CDE19D83386004DD780 /* TileMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF3CDD19D83386004DD780 /* TileMapNode.swift */; };
+		29DF3CE019D86277004DD780 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF3CDF19D86277004DD780 /* EditorViewController.swift */; };
+		29DF3CE419D87121004DD780 /* EditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29DF3CE319D87121004DD780 /* EditorView.xib */; };
+		29DF3CE719D87F64004DD780 /* EditorCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29DF3CE519D87F64004DD780 /* EditorCardView.xib */; };
+		29DF3CE819D87F64004DD780 /* EditorCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF3CE619D87F64004DD780 /* EditorCardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -643,6 +647,10 @@
 		29DF3CD719D77390004DD780 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = Resources/selected.png; sourceTree = "<group>"; };
 		29DF3CD919D81868004DD780 /* EditorPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorPopupViewController.swift; sourceTree = "<group>"; };
 		29DF3CDD19D83386004DD780 /* TileMapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMapNode.swift; sourceTree = "<group>"; };
+		29DF3CDF19D86277004DD780 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		29DF3CE319D87121004DD780 /* EditorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditorView.xib; sourceTree = "<group>"; };
+		29DF3CE519D87F64004DD780 /* EditorCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditorCardView.xib; sourceTree = "<group>"; };
+		29DF3CE619D87F64004DD780 /* EditorCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorCardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1443,6 +1451,8 @@
 		29DF3C1819D72516004DD780 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				29DF3CE519D87F64004DD780 /* EditorCardView.xib */,
+				29DF3CE619D87F64004DD780 /* EditorCardViewController.swift */,
 				29DF3CB219D7406C004DD780 /* Components */,
 				29DF3CB619D7406C004DD780 /* Systems */,
 				29DF3CAD19D73B45004DD780 /* Festival-Bridging-Header.h */,
@@ -1453,6 +1463,8 @@
 				29DF3CC419D76670004DD780 /* HudLayer.swift */,
 				29DF3CD919D81868004DD780 /* EditorPopupViewController.swift */,
 				29DF3CDD19D83386004DD780 /* TileMapNode.swift */,
+				29DF3CDF19D86277004DD780 /* EditorViewController.swift */,
+				29DF3CE319D87121004DD780 /* EditorView.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1584,6 +1596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29DF39BE19D72514004DD780 /* Default@2x.png in Resources */,
+				29DF3CE419D87121004DD780 /* EditorView.xib in Resources */,
 				29DF3CD819D77390004DD780 /* selected.png in Resources */,
 				29DF39D119D72514004DD780 /* Icon-120.png in Resources */,
 				29DF3CB119D73FAF004DD780 /* Player.png in Resources */,
@@ -1596,6 +1609,7 @@
 				29DF39BC19D72514004DD780 /* Default.png in Resources */,
 				29DF39C519D72514004DD780 /* Icon.png in Resources */,
 				29DF39D319D72514004DD780 /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
+				29DF3CE719D87F64004DD780 /* EditorCardView.xib in Resources */,
 				29DF39C219D72514004DD780 /* Default-Landscape~ipad.png in Resources */,
 				29DF39D719D72514004DD780 /* Icon-Small.png in Resources */,
 				29DF3CC119D74263004DD780 /* meta_tiles.png in Resources */,
@@ -1683,6 +1697,7 @@
 				29DF3B8619D72516004DD780 /* CCTableView.m in Sources */,
 				29DF3A5519D72514004DD780 /* CCLayout.m in Sources */,
 				29DF3A8519D72515004DD780 /* CCPhysicsShape.m in Sources */,
+				29DF3CE019D86277004DD780 /* EditorViewController.swift in Sources */,
 				29DF3A0B19D72514004DD780 /* CCRenderer.m in Sources */,
 				29DF3AA019D72515004DD780 /* CCSprite.m in Sources */,
 				29DF3B2819D72515004DD780 /* OALAudioTrack.m in Sources */,
@@ -1696,6 +1711,7 @@
 				29DF3A8219D72515004DD780 /* CCPhysicsNode.m in Sources */,
 				29DF3B2419D72515004DD780 /* OALUtilityActions.m in Sources */,
 				29DF3A5C19D72514004DD780 /* CCMotionStreak.m in Sources */,
+				29DF3CE819D87F64004DD780 /* EditorCardViewController.swift in Sources */,
 				29DF3B6619D72515004DD780 /* NSMutableArray+WeakReferences.m in Sources */,
 				29DF3B5419D72515004DD780 /* OpenALManager.m in Sources */,
 				29DF3AC419D72515004DD780 /* CCTMXXMLParser.m in Sources */,

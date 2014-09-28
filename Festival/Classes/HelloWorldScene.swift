@@ -71,7 +71,13 @@ class HelloWorldScene : CCScene {
         // always call super onExit last
         super.onExit()
     }
-    
+    func addGestureRecognizers() {
+        let panGestureRecognizer:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        CCDirector.sharedDirector().view.addGestureRecognizer(panGestureRecognizer)
+        
+        let pitchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePitch:")
+        CCDirector.sharedDirector().view.addGestureRecognizer(pitchGestureRecognizer)
+    }
     
     func createInitialPeople(){
         let human = environment.createEntity()
@@ -87,6 +93,7 @@ class HelloWorldScene : CCScene {
     override func touchBegan(touch: UITouch!, withEvent event: UIEvent!)
     {
         let touchLoc:CGPoint = touch.locationInNode(self)
+        hudLayer.hideEditorMenu()
     }
     
     func selectSpriteForTouch(touchLocation : CGPoint) {
@@ -98,8 +105,8 @@ class HelloWorldScene : CCScene {
                 selectedSprite = nil
             }
         }
-
     }
+    
     func panForTranslation(translation : CGPoint){
         if (selectedSprite != nil) {
             let newPos:CGPoint = CGPointMake(selectedSprite.position.x+translation.x, selectedSprite.position.y+translation.y)
@@ -113,24 +120,10 @@ class HelloWorldScene : CCScene {
             tileMapNode.panningPosition = newPos
         }
     }
-    func placeGid(){
-          var selectedItem:UInt32 = UInt32(hudLayer.selectedItem)
+    func placeGid(gid:Int){
+          var selectedItem:UInt32 = UInt32(gid)
           var gid : UInt32 = selectedItem
           tileMapNode.addSpriteToTileMap(gid, position: hudLayer.sprite.position)
-    }
-       
-    func onBackClicked(sender:AnyObject)
-    {
-        // back to intro scene with transition
-        CCDirector.sharedDirector().replaceScene(IntroScene(), withTransition: CCTransition(pushWithDirection: CCTransitionDirection.Right, duration: 1.0))
-    }
-    
-    func addGestureRecognizers() {
-        let panGestureRecognizer:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
-        CCDirector.sharedDirector().view.addGestureRecognizer(panGestureRecognizer)
-    
-        let pitchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePitch:")
-        CCDirector.sharedDirector().view.addGestureRecognizer(pitchGestureRecognizer)
     }
     
     func handlePan(sender : UIPanGestureRecognizer) {
@@ -154,8 +147,14 @@ class HelloWorldScene : CCScene {
         }
     }
     
-    func handlePitch(sender : UIPinchGestureRecognizer) {
-
+    func handlePitch(sender : UIPinchGestureRecognizer ) {
+        var startScale:Float = 1
+        if(sender.state == UIGestureRecognizerState.Began){
+            startScale = scene.scaleX
+        }
+        var newScale:Float = startScale * Float(sender.scale)
+        tileMapNode.scaleX = min(2.0, max(newScale, 0.05))
+        tileMapNode.scaleY = scene.scaleX
     }
     
     func boundLayerPos(newPos : CGPoint) -> CGPoint{

@@ -15,14 +15,26 @@ class HudLayer : CCNode {
     var helloScene: HelloWorldScene!
     var confirm:CCButton!
     var cancel:CCButton!
-    
+    var editorViewController : EditorViewController!
+
     init(scene: HelloWorldScene)
     {
         super.init()
         helloScene = scene
         
         setupButtons()
+        setupEditorMenu()
     }
+    func setupEditorMenu(){
+        
+        editorViewController = EditorViewController()
+        CCDirector.sharedDirector().view.addSubview(editorViewController.view)
+        //   CCDirector.sharedDirector().addChildViewController(editorViewController)
+        var editorFrame : CGRect = editorViewController.view.frame
+        editorViewController.view.frame = CGRect(x: -editorFrame.size.width, y: 0, width: editorFrame.size.width, height: editorFrame.size.height)
+
+    }
+    
     func setupButtons(){
         createButton("[ EDITOR ]", position: CGPointMake(50, 50),selector: "onEditorClicked:")
         
@@ -73,17 +85,23 @@ class HudLayer : CCNode {
     func onEditorClicked(sender:AnyObject)
     {
         setupButton()
-        
+        var editorFrame : CGRect = editorViewController.view.frame
+        editorViewController.view.frame = CGRect(x: 0, y: 0, width: editorFrame.size.width, height: editorFrame.size.height)
+    
     }
     
     func onConfirmClicked(sender:AnyObject) {
         cleanup()
-        helloScene.placeGid()
+        helloScene.placeGid(selectedItem)
+    }
+    
+    func hideEditorMenu(){
+        var editorFrame : CGRect = editorViewController.view.frame
+        editorViewController.view.frame = CGRect(x: -editorFrame.size.width, y: 0, width: editorFrame.size.width, height: editorFrame.size.height)
     }
     
     func onCancelClicked(sender:AnyObject) {
         cleanup()
-
     }
     func cleanup(){
         removeChild(sprite)
