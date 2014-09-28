@@ -22,7 +22,6 @@ class EditorPopupNode : CCNode {
         background.position = CGPoint(x: winSize.width/2-background.contentSize.width/2, y: winSize.height/2-background.contentSize.height/2)
         addChild(background)
         
-        setupButton()
         createCloseButton()
 
     }
@@ -37,25 +36,5 @@ class EditorPopupNode : CCNode {
         
     }
     
-    func setupButton(){
-        decorationButton("bush_green.png",position: CGPointMake(200, 40), tag: "48")
-        decorationButton("sign.png",position: CGPointMake(250, 40), tag: "47")
-        decorationButton("stone.png",position: CGPointMake(300, 40), tag: "46")
-    }
-    func decorationButton(spriteName : String, position: CGPoint, tag : String){
-        let spriteFrame:CCSpriteFrame = CCSpriteFrame.frameWithImageNamed(spriteName) as CCSpriteFrame
-        let spriteFrameSelected:CCSpriteFrame = CCSpriteFrame.frameWithImageNamed("selected.png") as CCSpriteFrame
-        
-        let button:CCButton = CCButton(title: tag, spriteFrame: spriteFrame, highlightedSpriteFrame: spriteFrameSelected, disabledSpriteFrame: spriteFrameSelected)
-        button.position = position
-        button.scale = 1.5
-        button.setTarget(self, selector: "onDecorationClicked:")
-        
-        addChild(button)
-    }
-    
-    func onDecorationClicked(sender:CCButton){
-        sender.selected = true
-     //   selectedItem = sender.title.toInt()!
-    }
+
 }

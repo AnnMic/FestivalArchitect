@@ -28,8 +28,37 @@ class HudLayer : CCNode {
         addChild(editorButton)
     }
     
+    func setupButton(){
+        decorationButton("bush_green.png",position: CGPointMake(200, 40), tag: "48")
+        decorationButton("sign.png",position: CGPointMake(250, 40), tag: "47")
+        decorationButton("stone.png",position: CGPointMake(300, 40), tag: "46")
+    }
+    func decorationButton(spriteName : String, position: CGPoint, tag : String){
+        let spriteFrame:CCSpriteFrame = CCSpriteFrame.frameWithImageNamed(spriteName) as CCSpriteFrame
+        let spriteFrameSelected:CCSpriteFrame = CCSpriteFrame.frameWithImageNamed("selected.png") as CCSpriteFrame
+        
+        let button:CCButton = CCButton(title: tag, spriteFrame: spriteFrame, highlightedSpriteFrame: spriteFrameSelected, disabledSpriteFrame: spriteFrameSelected)
+        button.position = position
+        button.scale = 1.5
+        button.setTarget(self, selector: "onDecorationClicked:")
+        
+        addChild(button)
+    }
+    
+    func onDecorationClicked(sender:CCButton){
+        sender.selected = true
+        selectedItem = sender.title.toInt()!
+        addDragSprite()
+    }
+    func addDragSprite(){
+        let sprite :CCSprite = CCSprite(imageNamed: "bush_green.png")
+        sprite.position = CGPointMake(500, 500)
+        addChild(sprite)
+    }
+    
     func onEditorClicked(sender:AnyObject)
     {
+        setupButton()
     //    var editorPopup:EditorPopupNode = EditorPopupNode()
     //    editorPopup.contentSize = CGSizeMake(50, 50)
      //   addChild(editorPopup)

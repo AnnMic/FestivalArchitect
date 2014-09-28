@@ -222,6 +222,7 @@
 		29DF3CD619D76FDC004DD780 /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF3CD419D76FDC004DD780 /* stone.png */; };
 		29DF3CD819D77390004DD780 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 29DF3CD719D77390004DD780 /* selected.png */; };
 		29DF3CDA19D81868004DD780 /* EditorPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF3CD919D81868004DD780 /* EditorPopupViewController.swift */; };
+		29DF3CDE19D83386004DD780 /* TileMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DF3CDD19D83386004DD780 /* TileMapNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -641,6 +642,7 @@
 		29DF3CD419D76FDC004DD780 /* stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stone.png; path = Resources/stone.png; sourceTree = "<group>"; };
 		29DF3CD719D77390004DD780 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selected.png; path = Resources/selected.png; sourceTree = "<group>"; };
 		29DF3CD919D81868004DD780 /* EditorPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorPopupViewController.swift; sourceTree = "<group>"; };
+		29DF3CDD19D83386004DD780 /* TileMapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMapNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1450,6 +1452,7 @@
 				29DF3C9719D73947004DD780 /* Main.swift */,
 				29DF3CC419D76670004DD780 /* HudLayer.swift */,
 				29DF3CD919D81868004DD780 /* EditorPopupViewController.swift */,
+				29DF3CDD19D83386004DD780 /* TileMapNode.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1751,6 +1754,7 @@
 				29DF3A4B19D72514004DD780 /* CCLabelBMFont.m in Sources */,
 				29DF3B3A19D72515004DD780 /* ALCaptureDevice.m in Sources */,
 				29DF3CB919D7406C004DD780 /* PositionComponent.swift in Sources */,
+				29DF3CDE19D83386004DD780 /* TileMapNode.swift in Sources */,
 				29DF3ABE19D72515004DD780 /* CCTiledMapLayer.m in Sources */,
 				29DF3A0619D72514004DD780 /* CCEffectTexture.m in Sources */,
 				29DF3AF519D72515004DD780 /* CCColor.m in Sources */,
