@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="meta_tiles" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="meta_tiles.png" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Collectable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="terrain_atlas" tilewidth="32" tileheight="32">
+  <image source="terrain_atlas.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Background" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztWG0KwyAMFXaUskP2ZranG2MIJUTNl0ZZfjzGuizJy0userxSOgKBQCAQCAQCgUDAATn551BwGeTy5HOnH7x5/ROo/QTtZuhE7S+Y2/c7d060c2UxC8UP9IU9G6XzKpp6c7TM8zkrNb8Xwcabhye8eFjHbfmr/dbra06OFFsrG0ru3sB4WGhOXbPfE/g9c4Gf2lpZ2Gq4Sfqrt3eZudasPh8tnMg+hcsNq/UOZ4Bej6zGoabFDjx2npHRNVhBnx3Q6nNNDTFdvDQpcUfFH8lrh3OK5FxOqRnco3nwKrFnrLV5YJ9iGkl9nAJdJHdPXGB1w+7ANPpo/8/VgBKv2HD00Nwpw7OSla4Z9BTVr3ZeNGc/aj6ZwMvj/SiJifUOfMbpiRlrK7ffuXX5AOqTvLY=
+  </data>
+ </layer>
+ <layer name="npc" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0dEJgzAUBdCAXw5QcJNu4ibaTewkpetVUEECoqYfSeAcuIQH+XiXFwIAAAAAAAAANRjmjHNeuRdJ1K1v7T02cY9Hxl3+Ueo9+pt5hjJ7jLt8ovkbzfuU1mNKzDvHslzWnX8pTtssgSM/FXQbSA==
+  </data>
+ </layer>
+ <layer name="Foreground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztWElSwzAQ9JIfACd2bpyBEztfAB4A72AL3yCBJN9gh2eww4U/gBPahVWZqKREsSxHBnVVV9lTJatbI0Uz8TwHBwcHBweH/4BpcCaHeZq+57VALzDz/XVwQxD/wpzfYOT/vkehOH4ado7j3xkmoH8SnDLkYwfcTZ5pbkYx3xg4zs0ri8fotuYriK2Ca4Z8lMHj5JnmZhHzLYHLQWcOZPEY3db8ELEjsGzIRx1sJM80N1QjzUFE9g2Nx/uJX/M4xnJ0hlgNrBvyQUFzQzWq5CYG3VfMr+lzIQLNDa+R6eLPB9Uu0mz6XKQF749qF2k2fS6yQMSdiT1wHzwgmvM8Fzqg2itgNT7zlmsWocja06CGPVgHG5L7vii4gf5b8E7TR5r1yHINX/GNN/Bd81tp1kN1jJLfkuf5YFBSn1+ENOuhOiarPaOENOuhOCarPTNwCPxGRfdkMYZwxw2DIxbcdTp9+Bz0z4MLFviQ9eEq2IT+LXB7QD7ug3YeWK+X1/8j3dDvb8BH0M4D6/V08pJGUxa/W2HYzgPr9WgPXiTQnlv03gtZ1lg636I9N/8+6/ceT2sOXU+51i8caM2hq2Og9QupObR1ZFTzakNRh+v97MJfruMdHIqKT4V7neEKZ/e6AOf3BJ4qYFXi7RkeXizyIaunz6H/AryU+GhiXMsiHzI8QP8j+NTHXjONHy9hnU4=
+  </data>
+ </layer>
+ <layer name="Road" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt0csJgDAQBcA0IdiJndiJ2olWIranB4WQi79DEpiBR1jIYR8bAgAAAAAAAAA1GI6MR6bci3zUnm/tPS5pjybjLn+Ueo/+ZbpQZo8xyprMWzLHKa3H/DFLjmV5rL3/AtXZAeI7GzA=
+  </data>
+ </layer>
+ <layer name="Decorations" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz0EJAAAIBEHBAPZva4h7CDKTYLcKAAAAAAAAgOnrgtyHBwCAxAJ7IQAl
+  </data>
+ </layer>
+ <layer name="Meta" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmFsKxCAMAK33P/RS9mNDN0TzMtFmQLClaqZGpW3txyUo2ZA4ZHe56eA+Vs/mcD3qs7HBZzP53FD5skNOwfe6sweEyhXKof8/XhRHITn7TlgX2fas0X76fOc77LtFURRF8SY0/xcynesWMWTzwL5luX1E4e2xytHDA/uXtKJYeGjXvWbeLD0k7bRtYFsvD00ucNt7ecxCjc3tJ7NHxDrnjD3rMYuVB3fMUV3SZ6QHFgs3hxpyL9JD2+cbPbhz7xEzFptkPjooFrFY7K3RHiOo+SyP7zX00K4X7jXl0RWFS3nQfZ3ksfIczOQhWdsr1rnnmTvCauxoDyu0OZKpfACoXgI4
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="50" height="50">
+  <object name="SpawnPoint" x="16" y="1367" width="52" height="55"/>
+ </objectgroup>
+</map>
