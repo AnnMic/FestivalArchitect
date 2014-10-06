@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		296C9C7D19E1B40200415B87 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9819E1B40100415B87 /* AppConstants.swift */; };
 		296C9C7E19E1B40200415B87 /* CCCMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9A19E1B40100415B87 /* CCCMacros.swift */; };
 		296C9C7F19E1B40200415B87 /* AnimateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9C19E1B40100415B87 /* AnimateComponent.swift */; };
 		296C9C8019E1B40200415B87 /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9D19E1B40100415B87 /* MoveComponent.swift */; };
@@ -241,6 +240,9 @@
 		296CA67B19E1C07A00415B87 /* ChipmunkShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C9B2B19E1B40200415B87 /* ChipmunkShape.m */; };
 		296CA67C19E1C07A00415B87 /* ChipmunkSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 296C9B2C19E1B40200415B87 /* ChipmunkSpace.m */; };
 		296CA67D19E1C09000415B87 /* chipmunk.c in Sources */ = {isa = PBXBuildFile; fileRef = 296C9B0019E1B40200415B87 /* chipmunk.c */; };
+		296CA67F19E1C22000415B87 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296CA67E19E1C22000415B87 /* AppConstants.swift */; };
+		296CA68119E1CEBF00415B87 /* ShortestPathStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296CA68019E1CEBF00415B87 /* ShortestPathStep.swift */; };
+		296CA68319E1D2CA00415B87 /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296CA68219E1D2CA00415B87 /* AStar.swift */; };
 		29BA6B3E19DEDA8800B6AFE5 /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3719DEDA8800B6AFE5 /* Collector.swift */; };
 		29BA6B3F19DEDA8800B6AFE5 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3919DEDA8800B6AFE5 /* Entity.swift */; };
 		29BA6B4019DEDA8800B6AFE5 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3A19DEDA8800B6AFE5 /* Environment.swift */; };
@@ -252,7 +254,6 @@
 /* Begin PBXFileReference section */
 		191E65DE195952BF000F4442 /* FestivalArchitect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestivalArchitect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		191E65E2195952BF000F4442 /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjectiveChipmunk.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		296C9A9819E1B40100415B87 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		296C9A9A19E1B40100415B87 /* CCCMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCCMacros.swift; sourceTree = "<group>"; };
 		296C9A9C19E1B40100415B87 /* AnimateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimateComponent.swift; sourceTree = "<group>"; };
 		296C9A9D19E1B40100415B87 /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
@@ -704,6 +705,9 @@
 		296CA66F19E1BDD700415B87 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		296CA67119E1BDDC00415B87 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		296CA67319E1BDE400415B87 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		296CA67E19E1C22000415B87 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		296CA68019E1CEBF00415B87 /* ShortestPathStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShortestPathStep.swift; path = ../ShortestPathStep.swift; sourceTree = "<group>"; };
+		296CA68219E1D2CA00415B87 /* AStar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AStar.swift; path = ../AStar.swift; sourceTree = "<group>"; };
 		29BA6B3719DEDA8800B6AFE5 /* Collector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collector.swift; sourceTree = "<group>"; };
 		29BA6B3819DEDA8800B6AFE5 /* EntitasSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntitasSwift.h; sourceTree = "<group>"; };
 		29BA6B3919DEDA8800B6AFE5 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -737,9 +741,10 @@
 		191E65D5195952BF000F4442 = {
 			isa = PBXGroup;
 			children = (
+				29BA6B3619DEDA8800B6AFE5 /* EntitasSwift */,
+				296C9AD219E1B40200415B87 /* Libraries */,
 				296CA67519E1BDFB00415B87 /* Framework */,
 				296C9A9719E1B40100415B87 /* FestivalArchitect */,
-				29BA6B3619DEDA8800B6AFE5 /* EntitasSwift */,
 				191E65DF195952BF000F4442 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -756,10 +761,8 @@
 		296C9A9719E1B40100415B87 /* FestivalArchitect */ = {
 			isa = PBXGroup;
 			children = (
-				296C9A9819E1B40100415B87 /* AppConstants.swift */,
 				296C9A9919E1B40100415B87 /* Classes */,
 				296C9AAF19E1B40200415B87 /* FestivalArchitect-Bridging-Header.h */,
-				296C9AD219E1B40200415B87 /* Libraries */,
 				296C9C5819E1B40200415B87 /* Resources */,
 				296C9C7B19E1B40200415B87 /* Supporting Files */,
 			);
@@ -769,14 +772,16 @@
 		296C9A9919E1B40100415B87 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				296CA68419E1D98D00415B87 /* A* */,
+				296CA67E19E1C22000415B87 /* AppConstants.swift */,
 				296C9A9A19E1B40100415B87 /* CCCMacros.swift */,
+				296C9AAB19E1B40200415B87 /* Systems */,
 				296C9A9B19E1B40100415B87 /* Components */,
 				296C9AA119E1B40200415B87 /* Editor */,
 				296C9AA719E1B40200415B87 /* HelloWorldScene.swift */,
 				296C9AA819E1B40200415B87 /* HudLayer.swift */,
 				296C9AA919E1B40200415B87 /* IntroScene.swift */,
 				296C9AAA19E1B40200415B87 /* Main.swift */,
-				296C9AAB19E1B40200415B87 /* Systems */,
 				296C9AAE19E1B40200415B87 /* TileMapNode.swift */,
 			);
 			path = Classes;
@@ -829,7 +834,8 @@
 				296C9C1419E1B40200415B87 /* LICENSE_Kazmath.txt */,
 				296C9C1519E1B40200415B87 /* ObjectAL */,
 			);
-			path = Libraries;
+			name = Libraries;
+			path = FestivalArchitect/Libraries;
 			sourceTree = "<group>";
 		};
 		296C9AD319E1B40200415B87 /* CCBReader */ = {
@@ -1507,6 +1513,15 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		296CA68419E1D98D00415B87 /* A* */ = {
+			isa = PBXGroup;
+			children = (
+				296CA68019E1CEBF00415B87 /* ShortestPathStep.swift */,
+				296CA68219E1D2CA00415B87 /* AStar.swift */,
+			);
+			name = "A*";
+			sourceTree = "<group>";
+		};
 		29BA6B3619DEDA8800B6AFE5 /* EntitasSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -1664,6 +1679,7 @@
 				296C9CEF19E1B40200415B87 /* CCScene.m in Sources */,
 				296C9D8819E1B48800415B87 /* ray2.c in Sources */,
 				296C9D3919E1B40200415B87 /* NSMutableDictionary+WeakReferences.m in Sources */,
+				296CA68119E1CEBF00415B87 /* ShortestPathStep.swift in Sources */,
 				296C9CAA19E1B40200415B87 /* cpConstraint.c in Sources */,
 				296C9D1B19E1B40200415B87 /* CCSlider.m in Sources */,
 				296C9D3A19E1B40200415B87 /* OALAudioFile.m in Sources */,
@@ -1688,7 +1704,6 @@
 				296C9CF719E1B40200415B87 /* CCSpriteFrameCache.m in Sources */,
 				296C9CDA19E1B40200415B87 /* CCLabelBMFont.m in Sources */,
 				296C9D2A19E1B40200415B87 /* ALBuffer.m in Sources */,
-				296C9C7D19E1B40200415B87 /* AppConstants.swift in Sources */,
 				296C9C8A19E1B40200415B87 /* HudLayer.swift in Sources */,
 				296C9D3419E1B40200415B87 /* OALAudioSession.m in Sources */,
 				296C9CA919E1B40200415B87 /* cpCollision.c in Sources */,
@@ -1757,6 +1772,7 @@
 				296C9D0A19E1B40200415B87 /* NSEvent+CC.m in Sources */,
 				296C9D2519E1B40200415B87 /* OALUtilityActions.m in Sources */,
 				296C9CA119E1B40200415B87 /* CCBReader.m in Sources */,
+				296CA67F19E1C22000415B87 /* AppConstants.swift in Sources */,
 				296C9CD219E1B40200415B87 /* ccDeprecated.m in Sources */,
 				296C9CD019E1B40200415B87 /* CCClippingNode.m in Sources */,
 				296C9D1A19E1B40200415B87 /* CCScrollView.m in Sources */,
@@ -1830,6 +1846,7 @@
 				296C9C8E19E1B40200415B87 /* MoveSystem.swift in Sources */,
 				296C9CBD19E1B40200415B87 /* cpSpaceStep.c in Sources */,
 				296C9CA219E1B40200415B87 /* CCBsequence.m in Sources */,
+				296CA68319E1D2CA00415B87 /* AStar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

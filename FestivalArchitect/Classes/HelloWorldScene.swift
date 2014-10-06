@@ -23,11 +23,13 @@ class HelloWorldScene : CCScene {
     
     let winSize:CGRect!
     var selectedSprite:CCSprite!
-    
+    var aStar:AStar!
+
     var hudLayer:HudLayer!
     var environment : Environment!
     let moveSystem : MoveSystem!
     
+    var AStarHuman:CCSprite!
     
     override init()
     {
@@ -49,7 +51,14 @@ class HelloWorldScene : CCScene {
 
         environment = Environment()
         moveSystem = MoveSystem(env: environment)
+        
+        aStar = AStar(tileMapNode: tileMapNode, hello: self)
         createInitialPeople()
+        
+        AStarHuman = CCSprite(imageNamed: "Player.png")
+        AStarHuman.position = tileMapNode.spawnPoint
+        tileMapNode.addChild(AStarHuman, z: tileMapNode.npcLayer.zOrder)
+
     }
     
     func createInitialPeople(){
@@ -57,9 +66,28 @@ class HelloWorldScene : CCScene {
         human.setComponent(MoveComponent(moveTarget: CGPointMake(0, 0), acc: CGPointMake(20, 20), velocity: CGPointMake(50, 50)))
         var humanSprite:CCSprite = CCSprite(imageNamed: "Player.png")
         human.setComponent(AnimateComponent(moveTarget: CGPointMake(500, 0), sprite: humanSprite))
-        
+
         human.setComponent(RenderComponent(sprite: humanSprite, spawnPosition: tileMapNode.spawnPoint))
         tileMapNode.addChild(humanSprite, z: npcLayer.zOrder)
+        
+
+    }
+
+    func popStepAndAnimate() {
+        if(aStar.shortestPath.count == 0){
+            return
+        }
+
+        var step :ShortestPathStep = aStar.shortestPath[0]
+        
+        var moveAction:CCAction = CCActionMoveTo(duration: 0.5, position: tileMapNode.positionForTileCoord(step.position))
+        var moveCallback:CCAction = CCActionCallFunc(target: self, selector: "popStepAndAnimate")
+        var sequence:CCAction = CCActionSequence.actionWithArray([moveAction,moveCallback]) as CCAction
+        
+        AStarHuman.runAction(sequence)
+        aStar.shortestPath.removeAtIndex(0)
+        
+        
     }
     
     func addGestureRecognizers() {
@@ -94,6 +122,9 @@ class HelloWorldScene : CCScene {
     
     override func touchBegan(touch: UITouch!, withEvent event: UIEvent!)
     {
+        let touchLoc:CGPoint = touch.locationInNode(self)
+        aStar.moveToward(touchLoc)
+        
         //  let touchLoc:CGPoint = touch.locationInNode(self)
         //  println("Move sprite to \(NSStringFromCGPoint(touchLoc))")
         hudLayer.hideEditorMenu()
@@ -173,4 +204,8 @@ class HelloWorldScene : CCScene {
         
         moveSystem.execute(Float(delta))
     }
+
+    
+
+
 }

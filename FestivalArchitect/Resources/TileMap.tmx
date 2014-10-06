@@ -9,7 +9,7 @@
   </tile>
   <tile id="1">
    <properties>
-    <property name="Collectable" value="True"/>
+    <property name="Walkable" value="True"/>
    </properties>
   </tile>
  </tileset>
@@ -28,12 +28,12 @@
  </layer>
  <layer name="Foreground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztWElSwzAQ9JIfACd2bpyBEztfAB4A72AL3yCBJN9gh2eww4U/gBPahVWZqKREsSxHBnVVV9lTJatbI0Uz8TwHBwcHBweH/4BpcCaHeZq+57VALzDz/XVwQxD/wpzfYOT/vkehOH4ado7j3xkmoH8SnDLkYwfcTZ5pbkYx3xg4zs0ri8fotuYriK2Ca4Z8lMHj5JnmZhHzLYHLQWcOZPEY3db8ELEjsGzIRx1sJM80N1QjzUFE9g2Nx/uJX/M4xnJ0hlgNrBvyQUFzQzWq5CYG3VfMr+lzIQLNDa+R6eLPB9Uu0mz6XKQF749qF2k2fS6yQMSdiT1wHzwgmvM8Fzqg2itgNT7zlmsWocja06CGPVgHG5L7vii4gf5b8E7TR5r1yHINX/GNN/Bd81tp1kN1jJLfkuf5YFBSn1+ENOuhOiarPaOENOuhOCarPTNwCPxGRfdkMYZwxw2DIxbcdTp9+Bz0z4MLFviQ9eEq2IT+LXB7QD7ug3YeWK+X1/8j3dDvb8BH0M4D6/V08pJGUxa/W2HYzgPr9WgPXiTQnlv03gtZ1lg636I9N/8+6/ceT2sOXU+51i8caM2hq2Og9QupObR1ZFTzakNRh+v97MJfruMdHIqKT4V7neEKZ/e6AOf3BJ4qYFXi7RkeXizyIaunz6H/AryU+GhiXMsiHzI8QP8j+NTHXjONHy9hnU4=
+   eJztl2lOwzAQhZ2kt2DnH2dg5yZwDrZyDVpoew12OAY7/OEOkLYvIlanlt26sZ3G4E96UjKS4zceT2szFggEAoFA4D+wBC2XME83YqwHsdjN97ehHUn8G3P+QGn0+54m8vhZMjxOfOfMw/8CtOgoj11oL3+mtZnBfLPQnDCvKp4xas03ENuEthzlUYdO8mdam1XMtwatx8M1UMUzRq35EWLHUN1RHm2okz/T2lCPtAYp2Tc0nu0ncc2zGK/ROWItqO0oDwqtDfWoU5sMuq94vq77QgatjeiR+xL7g3qXeXbdF0UR86PeZZ5d94UNUqEn9qED6JB4LrMvTKDeG1Az6/mKe5bhs/citLAH21BH8X/vC7fwfwfdG+ZRZD1sruEbvvEOfRh+q8h66I7RyrfGWATFNf35ZRRZD90xtvaMFkXWQ3OMrT0zdST5pr7nFNCirHu4a1T3cB94iAd14He9KtRl0t+Az3hQB37Xs12XcZ5s/G4lyaAO/K5H7+A+Qe/csvdx2DxjmXyL3rnF95Vo/Hh65jDNqdTziwA9c5j6mOr5hZw5jH1YOvMao+kj3P2qxV8+xwcCvvKl8b/OuUbv3njQv6fIqQE1Fbm9IIfXCuWhOk9fwP8ldKXIo4txvQrloeIR/p+g5wn2mmv6qmCbaA==
   </data>
  </layer>
  <layer name="Road" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt0csJgDAQBcA0IdiJndiJ2olWIranB4WQi79DEpiBR1jIYR8bAgAAAAAAAAA1GI6MR6bci3zUnm/tPS5pjybjLn+Ueo/+ZbpQZo8xyprMWzLHKa3H/DFLjmV5rL3/AtXZAeI7GzA=
+   eJztmOsNwjAMBrMEj02YBJgE2AQmKV2PRDSiqlBiq63sRnfSp/RffUqcWg0BAAAAAAAAAMAv55iLMleTSsvcYu4x70L6SR4mlZZJHl3MPuZZySF8nb16SGvLznish9bDoj8kd9FJUZvGeUnye7thzen/PHs8K5l8DiR30cuoRgnac7BbsZY5WPXl0rTk4b2HJSSPNB+14NHKfuDhh633x3FYW9qPsYfX73UNr/uh/R+QZnKPHuPZuzSLT+PNozZ7b3Emh9+9DNASH9SsV+A=
   </data>
  </layer>
  <layer name="Decorations" width="50" height="50">
@@ -43,7 +43,7 @@
  </layer>
  <layer name="Meta" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztmFsKxCAMAK33P/RS9mNDN0TzMtFmQLClaqZGpW3txyUo2ZA4ZHe56eA+Vs/mcD3qs7HBZzP53FD5skNOwfe6sweEyhXKof8/XhRHITn7TlgX2fas0X76fOc77LtFURRF8SY0/xcynesWMWTzwL5luX1E4e2xytHDA/uXtKJYeGjXvWbeLD0k7bRtYFsvD00ucNt7ecxCjc3tJ7NHxDrnjD3rMYuVB3fMUV3SZ6QHFgs3hxpyL9JD2+cbPbhz7xEzFptkPjooFrFY7K3RHiOo+SyP7zX00K4X7jXl0RWFS3nQfZ3ksfIczOQhWdsr1rnnmTvCauxoDyu0OZKpfACoXgI4
+   eJzt1jEKwCAQRUH1/ofOAdJIEPdrphiwsNgnCvbWWifemFgDc7wbePMunDkAJBsfVc+t45yOlXt13Nux+s7f0pFwZ27pqJ5Fh440OrLoyKIji459c538B9RRPzvwLw/Erwp/
   </data>
  </layer>
  <objectgroup name="Objects" width="50" height="50">

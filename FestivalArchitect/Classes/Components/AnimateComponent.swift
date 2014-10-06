@@ -12,13 +12,14 @@ class AnimateComponent : Component {
     
     init(moveTarget:CGPoint, sprite:CCSprite) {
         var moveAction:CCAction = CCActionMoveTo(duration: 10, position: moveTarget)
-        
+
         sprite.runAction(moveAction)
         
     }
     
-    internal override class func name() -> String {
+   internal override class func name() -> String {
         return "AnimateComponent"
     }
+    
 
 }
