@@ -2,7 +2,7 @@ import Foundation
 
 
 public protocol System {
-    func execute(dt:Float)
+    func update(dt:Float)
 }
 
 
@@ -14,9 +14,9 @@ public class MacroSystem : System {
         subSystems.append(s)
     }
     
-    public func execute(dt:Float) {
+    public func update(dt:Float) {
         for s in subSystems {
-            s.execute(dt)
+            s.update(dt)
         }
     }
     
