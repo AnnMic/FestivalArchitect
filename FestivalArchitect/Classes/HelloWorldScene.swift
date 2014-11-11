@@ -20,7 +20,6 @@ class HelloWorldScene : CCScene {
     let tileMap:CCTiledMap!
     let npcLayer:CCTiledMapLayer!
 
-    
     let winSize:CGRect!
     var selectedSprite:CCSprite!
     var aStar:AStar!
@@ -28,7 +27,8 @@ class HelloWorldScene : CCScene {
     var hudLayer:HudLayer!
     var environment : Environment!
     let moveSystem : MoveSystem!
-    
+    let aiSystem : AISystem!
+
     var AStarHuman:CCSprite!
     
     override init()
@@ -51,42 +51,49 @@ class HelloWorldScene : CCScene {
 
         environment = Environment()
         moveSystem = MoveSystem(env: environment)
-        
-        aStar = AStar(tileMapNode: tileMapNode, hello: self)
-        createInitialPeople()
-        
-        AStarHuman = CCSprite(imageNamed: "Player.png")
-        AStarHuman.position = tileMapNode.spawnPoint
-        tileMapNode.addChild(AStarHuman, z: tileMapNode.npcLayer.zOrder)
+        aiSystem = AISystem(env: environment)
+
+        createAIVisitor()
+
+
+       //  aStar = AStar(tileMapNode: tileMapNode, hello: self)
+      //  AStarHuman = CCSprite(imageNamed: "Player.png")
+       // AStarHuman.position = tileMapNode.spawnPoint
+       // tileMapNode.addChild(AStarHuman, z: tileMapNode.npcLayer.zOrder)
 
     }
     
-    func createInitialPeople(){
+ /*   func createInitialPeople(){
         let human = environment.createEntity()
         human.setComponent(MoveComponent(moveTarget: CGPointMake(0, 0), acc: CGPointMake(20, 20), velocity: CGPointMake(50, 50)))
         var humanSprite:CCSprite = CCSprite(imageNamed: "Player.png")
         human.setComponent(AnimateComponent(moveTarget: CGPointMake(500, 0), sprite: humanSprite))
 
         human.setComponent(RenderComponent(sprite: humanSprite, spawnPosition: tileMapNode.spawnPoint))
+        
+        human.setComponent(AIComponent(currentState: AIStateQuenchHunger()))
+
+        
         tileMapNode.addChild(humanSprite, z: npcLayer.zOrder)
         
 
-    }
+    }*/
 
-    func popStepAndAnimate() {
-        if(aStar.shortestPath.count == 0){
-            return
-        }
+   
+    func createAIVisitor(){
+        var sprite:CCSprite = CCSprite(imageNamed: "Player.png")
+        //[_batchNode addChild:sprite];
 
-        var step :ShortestPathStep = aStar.shortestPath[0]
-        
-        var moveAction:CCAction = CCActionMoveTo(duration: 0.5, position: tileMapNode.positionForTileCoord(step.position))
-        var moveCallback:CCAction = CCActionCallFunc(target: self, selector: "popStepAndAnimate")
-        var sequence:CCAction = CCActionSequence.actionWithArray([moveAction,moveCallback]) as CCAction
-        
-        AStarHuman.runAction(sequence)
-        aStar.shortestPath.removeAtIndex(0)
-        
+        let entity = environment.createEntity()
+
+        entity.setComponent(MoveComponent(moveTarget: CGPointMake(0, 0), acc: CGPointMake(20, 20), velocity: CGPointMake(50, 50)))
+        entity.setComponent(AnimateComponent(moveTarget: CGPointMake(500, 0), sprite: sprite))
+        entity.setComponent(RenderComponent(sprite: sprite, spawnPosition: tileMapNode.spawnPoint))
+        entity.setComponent(AIComponent(currentState: AIStateQuenchHunger()))
+        entity.setComponent(HungerComponent(hunger: 30))
+        entity.setComponent(ThirstComponent(thirst: 30))
+
+        tileMapNode.addChild(sprite, z: npcLayer.zOrder)
         
     }
     
@@ -122,11 +129,12 @@ class HelloWorldScene : CCScene {
     
     override func touchBegan(touch: UITouch!, withEvent event: UIEvent!)
     {
-        let touchLoc:CGPoint = touch.locationInNode(self)
-        aStar.moveToward(touchLoc)
+     //   let touchLoc:CGPoint = touch.locationInNode(self)
+       // aStar.moveToward(touchLoc)
         
         //  let touchLoc:CGPoint = touch.locationInNode(self)
         //  println("Move sprite to \(NSStringFromCGPoint(touchLoc))")
+        
         hudLayer.hideEditorMenu()
 
         // Move our sprite to touch location
@@ -202,7 +210,8 @@ class HelloWorldScene : CCScene {
     
     override func update(delta : CCTime){
         
-        moveSystem.execute(Float(delta))
+        moveSystem.update(Float(delta))
+        aiSystem.update(Float(delta))
     }
 
     

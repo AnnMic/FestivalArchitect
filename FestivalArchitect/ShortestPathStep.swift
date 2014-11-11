@@ -30,5 +30,22 @@ class ShortestPathStep : NSObject {
     func isStepEqual(other:ShortestPathStep)->Bool{
         return CGPointEqualToPoint(self.position, other.position)
     }
-    
+
+         //Not here
+  /*      func popStepAndAnimate() {  //move to A* class the moving action...
+            if(aStar.shortestPath.count == 0){
+                return
+            }
+
+            var step :ShortestPathStep = aStar.shortestPath[0]
+
+            var moveAction:CCAction = CCActionMoveTo(duration: 0.5, position: tileMapNode.positionForTileCoord(step.position))
+            var moveCallback:CCAction = CCActionCallFunc(target: self, selector: "popStepAndAnimate")
+            var sequence:CCAction = CCActionSequence.actionWithArray([moveAction,moveCallback]) as CCAction
+
+            AStarHuman.runAction(sequence)
+            aStar.shortestPath.removeAtIndex(0)
+        }
+      */
+
 }

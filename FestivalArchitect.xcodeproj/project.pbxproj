@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29039FC11A122D23008344DE /* AISystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FC01A122D23008344DE /* AISystem.swift */; };
+		29039FC31A1276B1008344DE /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FC21A1276B1008344DE /* Visitor.swift */; };
+		29039FC51A127FBC008344DE /* AIStateSleepTilRested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FC41A127FBC008344DE /* AIStateSleepTilRested.swift */; };
+		29039FD21A12B1EC008344DE /* HungerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FD01A12B1EC008344DE /* HungerComponent.swift */; };
+		29039FD31A12B1EC008344DE /* ThirstComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FD11A12B1EC008344DE /* ThirstComponent.swift */; };
 		296C9C7E19E1B40200415B87 /* CCCMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9A19E1B40100415B87 /* CCCMacros.swift */; };
 		296C9C7F19E1B40200415B87 /* AnimateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9C19E1B40100415B87 /* AnimateComponent.swift */; };
 		296C9C8019E1B40200415B87 /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9D19E1B40100415B87 /* MoveComponent.swift */; };
@@ -249,11 +254,20 @@
 		29BA6B4119DEDA8800B6AFE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29BA6B3B19DEDA8800B6AFE5 /* Info.plist */; };
 		29BA6B4219DEDA8800B6AFE5 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3C19DEDA8800B6AFE5 /* Matcher.swift */; };
 		29BA6B4319DEDA8800B6AFE5 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3D19DEDA8800B6AFE5 /* System.swift */; };
+		C4E4C0A20F993E3E4A4AC3B3 /* AIStateQuenchThirsty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4C793B1435B1955D7C729 /* AIStateQuenchThirsty.swift */; };
+		C4E4C10D1CA2E375E3E7A81E /* AIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4CFD7BDFB2C195D9BCA61 /* AIState.swift */; };
+		C4E4C27E21C42D4C20E1867C /* AIComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4C52136734FC555DF7809 /* AIComponent.swift */; };
+		C4E4CF6CDB011D85876B5B20 /* AIStateQuenchHunger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4CCE64300AE4F425B6155 /* AIStateQuenchHunger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		191E65DE195952BF000F4442 /* FestivalArchitect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestivalArchitect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		191E65E2195952BF000F4442 /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjectiveChipmunk.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		29039FC01A122D23008344DE /* AISystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AISystem.swift; sourceTree = "<group>"; };
+		29039FC21A1276B1008344DE /* Visitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Visitor.swift; path = ../Visitor.swift; sourceTree = "<group>"; };
+		29039FC41A127FBC008344DE /* AIStateSleepTilRested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateSleepTilRested.swift; sourceTree = "<group>"; };
+		29039FD01A12B1EC008344DE /* HungerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HungerComponent.swift; sourceTree = "<group>"; };
+		29039FD11A12B1EC008344DE /* ThirstComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirstComponent.swift; sourceTree = "<group>"; };
 		296C9A9A19E1B40100415B87 /* CCCMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCCMacros.swift; sourceTree = "<group>"; };
 		296C9A9C19E1B40100415B87 /* AnimateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimateComponent.swift; sourceTree = "<group>"; };
 		296C9A9D19E1B40100415B87 /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
@@ -715,6 +729,10 @@
 		29BA6B3B19DEDA8800B6AFE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29BA6B3C19DEDA8800B6AFE5 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		29BA6B3D19DEDA8800B6AFE5 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		C4E4C52136734FC555DF7809 /* AIComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponent.swift; sourceTree = "<group>"; };
+		C4E4C793B1435B1955D7C729 /* AIStateQuenchThirsty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateQuenchThirsty.swift; sourceTree = "<group>"; };
+		C4E4CCE64300AE4F425B6155 /* AIStateQuenchHunger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateQuenchHunger.swift; sourceTree = "<group>"; };
+		C4E4CFD7BDFB2C195D9BCA61 /* AIState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -779,10 +797,12 @@
 				296C9A9B19E1B40100415B87 /* Components */,
 				296C9AA119E1B40200415B87 /* Editor */,
 				296C9AA719E1B40200415B87 /* HelloWorldScene.swift */,
+				29039FC21A1276B1008344DE /* Visitor.swift */,
 				296C9AA819E1B40200415B87 /* HudLayer.swift */,
 				296C9AA919E1B40200415B87 /* IntroScene.swift */,
 				296C9AAA19E1B40200415B87 /* Main.swift */,
 				296C9AAE19E1B40200415B87 /* TileMapNode.swift */,
+				C4E4CF6F329D6CD77AE43980 /* AIStates */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -790,11 +810,14 @@
 		296C9A9B19E1B40100415B87 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				29039FD01A12B1EC008344DE /* HungerComponent.swift */,
+				29039FD11A12B1EC008344DE /* ThirstComponent.swift */,
 				296C9A9C19E1B40100415B87 /* AnimateComponent.swift */,
 				296C9A9D19E1B40100415B87 /* MoveComponent.swift */,
 				296C9A9E19E1B40100415B87 /* PositionComponent.swift */,
 				296C9A9F19E1B40100415B87 /* RenderComponent.swift */,
 				296C9AA019E1B40100415B87 /* SpeedComponent.swift */,
+				C4E4C52136734FC555DF7809 /* AIComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -816,6 +839,7 @@
 			children = (
 				296C9AAC19E1B40200415B87 /* InitialRenderSystem.swift */,
 				296C9AAD19E1B40200415B87 /* MoveSystem.swift */,
+				29039FC01A122D23008344DE /* AISystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1536,6 +1560,17 @@
 			path = EntitasSwift;
 			sourceTree = "<group>";
 		};
+		C4E4CF6F329D6CD77AE43980 /* AIStates */ = {
+			isa = PBXGroup;
+			children = (
+				C4E4CFD7BDFB2C195D9BCA61 /* AIState.swift */,
+				C4E4CCE64300AE4F425B6155 /* AIStateQuenchHunger.swift */,
+				C4E4C793B1435B1955D7C729 /* AIStateQuenchThirsty.swift */,
+				29039FC41A127FBC008344DE /* AIStateSleepTilRested.swift */,
+			);
+			path = AIStates;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1578,7 +1613,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = whackylabs;
+				ORGANIZATIONNAME = AnnMi;
 				TargetAttributes = {
 					191E65DD195952BF000F4442 = {
 						CreatedOnToolsVersion = 6.0;
@@ -1674,6 +1709,7 @@
 				296C9CF519E1B40200415B87 /* CCSpriteBatchNode.m in Sources */,
 				296C9CE319E1B40200415B87 /* CCParticleBatchNode.m in Sources */,
 				296C9D8219E1B48800415B87 /* matrix.c in Sources */,
+				29039FC11A122D23008344DE /* AISystem.swift in Sources */,
 				296C9CCB19E1B40200415B87 /* CCActionProgressTimer.m in Sources */,
 				296C9C8919E1B40200415B87 /* HelloWorldScene.swift in Sources */,
 				296C9CEF19E1B40200415B87 /* CCScene.m in Sources */,
@@ -1684,6 +1720,7 @@
 				296C9D1B19E1B40200415B87 /* CCSlider.m in Sources */,
 				296C9D3A19E1B40200415B87 /* OALAudioFile.m in Sources */,
 				296C9D3219E1B40200415B87 /* ALWrapper.m in Sources */,
+				29039FD31A12B1EC008344DE /* ThirstComponent.swift in Sources */,
 				296C9CC919E1B40200415B87 /* CCActionInterval.m in Sources */,
 				29BA6B4319DEDA8800B6AFE5 /* System.swift in Sources */,
 				296C9CBA19E1B40200415B87 /* cpSpaceDebug.c in Sources */,
@@ -1762,6 +1799,7 @@
 				296C9D2319E1B40200415B87 /* OALActionManager.m in Sources */,
 				296C9D1919E1B40200415B87 /* CCControlTextureFactory.m in Sources */,
 				296C9CD919E1B40200415B87 /* CCLabelAtlas.m in Sources */,
+				29039FC31A1276B1008344DE /* Visitor.swift in Sources */,
 				296C9CD319E1B40200415B87 /* CCDirector.m in Sources */,
 				296C9D0119E1B40200415B87 /* cocos2d.m in Sources */,
 				296C9C8319E1B40200415B87 /* SpeedComponent.swift in Sources */,
@@ -1778,6 +1816,7 @@
 				296C9D1A19E1B40200415B87 /* CCScrollView.m in Sources */,
 				296C9D8419E1B48800415B87 /* mat4.c in Sources */,
 				296C9CDF19E1B40200415B87 /* CCNode+Debug.m in Sources */,
+				29039FD21A12B1EC008344DE /* HungerComponent.swift in Sources */,
 				296C9D2D19E1B40200415B87 /* ALContext.m in Sources */,
 				296C9CD719E1B40200415B87 /* CCGLProgram.m in Sources */,
 				296C9CE219E1B40200415B87 /* CCParallaxNode.m in Sources */,
@@ -1798,6 +1837,7 @@
 				296C9CD419E1B40200415B87 /* CCDrawingPrimitives.m in Sources */,
 				296C9C8019E1B40200415B87 /* MoveComponent.swift in Sources */,
 				296C9D2F19E1B40200415B87 /* ALListener.m in Sources */,
+				29039FC51A127FBC008344DE /* AIStateSleepTilRested.swift in Sources */,
 				296C9CBC19E1B40200415B87 /* cpSpaceQuery.c in Sources */,
 				296C9D0419E1B40200415B87 /* CCES2Renderer.m in Sources */,
 				296C9CFC19E1B40200415B87 /* CCTiledMap.m in Sources */,
@@ -1847,6 +1887,10 @@
 				296C9CBD19E1B40200415B87 /* cpSpaceStep.c in Sources */,
 				296C9CA219E1B40200415B87 /* CCBsequence.m in Sources */,
 				296CA68319E1D2CA00415B87 /* AStar.swift in Sources */,
+				C4E4C27E21C42D4C20E1867C /* AIComponent.swift in Sources */,
+				C4E4CF6CDB011D85876B5B20 /* AIStateQuenchHunger.swift in Sources */,
+				C4E4C10D1CA2E375E3E7A81E /* AIState.swift in Sources */,
+				C4E4C0A20F993E3E4A4AC3B3 /* AIStateQuenchThirsty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

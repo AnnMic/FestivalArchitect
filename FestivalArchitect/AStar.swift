@@ -126,7 +126,7 @@ class AStar {
             println("\(s)")
             
         }
-        hello.popStepAndAnimate()
+        //hello.popStepAndAnimate()
     }
     
    /* func popStepAndAnimate() {
