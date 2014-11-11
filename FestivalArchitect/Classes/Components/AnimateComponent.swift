@@ -11,9 +11,9 @@ import Foundation
 class AnimateComponent : Component {
     
     init(moveTarget:CGPoint, sprite:CCSprite) {
-        var moveAction:CCAction = CCActionMoveTo(duration: 10, position: moveTarget)
+        //var moveAction:CCAction = CCActionMoveTo(duration: 10, position: moveTarget)
 
-        sprite.runAction(moveAction)
+      //  sprite.runAction(moveAction)
         
     }
     
