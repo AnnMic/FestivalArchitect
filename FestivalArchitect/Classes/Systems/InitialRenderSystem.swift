@@ -10,7 +10,7 @@ import Foundation
 
 class InitialRenderSystem : System {
     
-    func execute(dt:Float) {
+    func update(dt:Float) {
 
     }
 }

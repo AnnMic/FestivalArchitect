@@ -16,14 +16,14 @@ class MoveSystem : System {
         environment = env
     }
     
-    func execute(dt:Float) {
+    func update(dt:Float) {
         let matcher = All(types:[MoveComponent.self, RenderComponent.self])
-
+        
         let movable:[Entity] = environment.entitiesMatching(matcher)
         
         for entity in movable {
             
-          /*  let move = entity.component(MoveComponent)!
+            let move = entity.component(MoveComponent)!
             let render = entity.component(RenderComponent)!
             
             var newPosition = ccpAdd(render.sprite.position, ccpMult(move.velocity, CGFloat(dt)))
@@ -32,9 +32,9 @@ class MoveSystem : System {
             newPosition.y = max(min(newPosition.y, winSize.height), 0)
             render.sprite.position = newPosition
             
-            entity.setComponent(newPosition, overwrite: true)*/
+            //  entity.setComponent(newPosition, overwrite: true)
             
         }
     }
-
+    
 }
