@@ -92,6 +92,7 @@ class HelloWorldScene : CCScene {
         entity.setComponent(AIComponent(currentState: AIStateQuenchHunger()))
         entity.setComponent(HungerComponent(hunger: 30))
         entity.setComponent(ThirstComponent(thirst: 30))
+        entity.setComponent(SleepComponent(fatigue: 5))
 
         tileMapNode.addChild(sprite, z: npcLayer.zOrder)
         

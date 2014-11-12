@@ -12,6 +12,7 @@
 		29039FC51A127FBC008344DE /* AIStateSleepTilRested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FC41A127FBC008344DE /* AIStateSleepTilRested.swift */; };
 		29039FD21A12B1EC008344DE /* HungerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FD01A12B1EC008344DE /* HungerComponent.swift */; };
 		29039FD31A12B1EC008344DE /* ThirstComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FD11A12B1EC008344DE /* ThirstComponent.swift */; };
+		29039FD51A12B893008344DE /* SleepComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29039FD41A12B893008344DE /* SleepComponent.swift */; };
 		296C9C7E19E1B40200415B87 /* CCCMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9A19E1B40100415B87 /* CCCMacros.swift */; };
 		296C9C7F19E1B40200415B87 /* AnimateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9C19E1B40100415B87 /* AnimateComponent.swift */; };
 		296C9C8019E1B40200415B87 /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C9A9D19E1B40100415B87 /* MoveComponent.swift */; };
@@ -268,6 +269,7 @@
 		29039FC41A127FBC008344DE /* AIStateSleepTilRested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateSleepTilRested.swift; sourceTree = "<group>"; };
 		29039FD01A12B1EC008344DE /* HungerComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HungerComponent.swift; sourceTree = "<group>"; };
 		29039FD11A12B1EC008344DE /* ThirstComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirstComponent.swift; sourceTree = "<group>"; };
+		29039FD41A12B893008344DE /* SleepComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepComponent.swift; sourceTree = "<group>"; };
 		296C9A9A19E1B40100415B87 /* CCCMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCCMacros.swift; sourceTree = "<group>"; };
 		296C9A9C19E1B40100415B87 /* AnimateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimateComponent.swift; sourceTree = "<group>"; };
 		296C9A9D19E1B40100415B87 /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				296C9A9F19E1B40100415B87 /* RenderComponent.swift */,
 				296C9AA019E1B40100415B87 /* SpeedComponent.swift */,
 				C4E4C52136734FC555DF7809 /* AIComponent.swift */,
+				29039FD41A12B893008344DE /* SleepComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1721,6 +1724,7 @@
 				296C9D3A19E1B40200415B87 /* OALAudioFile.m in Sources */,
 				296C9D3219E1B40200415B87 /* ALWrapper.m in Sources */,
 				29039FD31A12B1EC008344DE /* ThirstComponent.swift in Sources */,
+				29039FD51A12B893008344DE /* SleepComponent.swift in Sources */,
 				296C9CC919E1B40200415B87 /* CCActionInterval.m in Sources */,
 				29BA6B4319DEDA8800B6AFE5 /* System.swift in Sources */,
 				296C9CBA19E1B40200415B87 /* cpSpaceDebug.c in Sources */,
