@@ -28,6 +28,7 @@ class HelloWorldScene : CCScene {
     var environment : Environment!
     let moveSystem : MoveSystem!
     let aiSystem : AISystem!
+    let physicalNeedSystem : PhysicalNeedSystem!
 
     var AStarHuman:CCSprite!
     
@@ -52,7 +53,10 @@ class HelloWorldScene : CCScene {
         environment = Environment()
         moveSystem = MoveSystem(env: environment)
         aiSystem = AISystem(env: environment)
-
+        physicalNeedSystem = PhysicalNeedSystem(env: environment)
+ 
+        schedule("updateSlowerSystem:", interval: 1)
+        
         createAIVisitor()
 
 
@@ -62,24 +66,7 @@ class HelloWorldScene : CCScene {
        // tileMapNode.addChild(AStarHuman, z: tileMapNode.npcLayer.zOrder)
 
     }
-    
- /*   func createInitialPeople(){
-        let human = environment.createEntity()
-        human.setComponent(MoveComponent(moveTarget: CGPointMake(0, 0), acc: CGPointMake(20, 20), velocity: CGPointMake(50, 50)))
-        var humanSprite:CCSprite = CCSprite(imageNamed: "Player.png")
-        human.setComponent(AnimateComponent(moveTarget: CGPointMake(500, 0), sprite: humanSprite))
 
-        human.setComponent(RenderComponent(sprite: humanSprite, spawnPosition: tileMapNode.spawnPoint))
-        
-        human.setComponent(AIComponent(currentState: AIStateQuenchHunger()))
-
-        
-        tileMapNode.addChild(humanSprite, z: npcLayer.zOrder)
-        
-
-    }*/
-
-   
     func createAIVisitor(){
         var sprite:CCSprite = CCSprite(imageNamed: "Player.png")
         //[_batchNode addChild:sprite];
@@ -90,12 +77,9 @@ class HelloWorldScene : CCScene {
         entity.setComponent(AnimateComponent(moveTarget: CGPointMake(500, 0), sprite: sprite))
         entity.setComponent(RenderComponent(sprite: sprite, spawnPosition: tileMapNode.spawnPoint))
         entity.setComponent(AIComponent(currentState: AIStateQuenchHunger()))
-        entity.setComponent(HungerComponent(hunger: 30))
-        entity.setComponent(ThirstComponent(thirst: 30))
-        entity.setComponent(SleepComponent(fatigue: 5))
+        entity.setComponent(PhysicalNeedComponent(fatigue: 30, thirst: 30, hunger: 5))
 
         tileMapNode.addChild(sprite, z: npcLayer.zOrder)
-        
     }
     
     func addGestureRecognizers() {
@@ -104,6 +88,8 @@ class HelloWorldScene : CCScene {
         
         let pitchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePitch:")
         CCDirector.sharedDirector().view.addGestureRecognizer(pitchGestureRecognizer)
+        
+        
     }
     
     
@@ -209,13 +195,15 @@ class HelloWorldScene : CCScene {
         return retval
     }
     
+    func updateSlowerSystem(delta : CCTime){
+        physicalNeedSystem.update(Float(delta))
+        aiSystem.update(Float(delta))
+    }
+    
     override func update(delta : CCTime){
         
         moveSystem.update(Float(delta))
-        aiSystem.update(Float(delta))
+     //   aiSystem.update(Float(delta))
     }
-
-    
-
 
 }

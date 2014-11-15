@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43e62d0f-931d-41fa-b760-11fda4a05420" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Components/AIComponent.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIState.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateQuenchHunger.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateSleepTilRested.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/AISystem.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/ComponentNew.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/EntityManager.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/EntityNew.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Components/HungerComponent.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Components/ThirstComponent.swift" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Visitor.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateFindFood.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateWalkRandomly.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/NeedSystem.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Components/VisitorComponent.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect.xcodeproj/project.xcworkspace/xcuserdata/annmichelsen.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/FestivalArchitect.xcodeproj/project.xcworkspace/xcuserdata/annmichelsen.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/AStar.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/AStar.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/Components/AnimateComponent.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Components/AnimateComponent.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateQuenchHunger.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateQuenchHunger.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateQuenchThirsty.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateQuenchThirsty.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateSleepTilRested.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateSleepTilRested.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/AISystem.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/AISystem.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect.xcodeproj/xcuserdata/annmichelsen.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/FestivalArchitect.xcodeproj/xcuserdata/annmichelsen.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/InitialRenderSystem.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/InitialRenderSystem.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/MoveSystem.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/Classes/Systems/MoveSystem.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect/ShortestPathStep.swift" afterPath="$PROJECT_DIR$/FestivalArchitect/ShortestPathStep.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EntitasSwift/System.swift" afterPath="$PROJECT_DIR$/EntitasSwift/System.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/festival-tycoon.iml" afterPath="$PROJECT_DIR$/.idea/festival-tycoon.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FestivalArchitect.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/FestivalArchitect.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -47,10 +37,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AIComponent.swift" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="HelloWorldScene.swift" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16187051" vertical-offset="765" max-vertical-offset="3135">
+              <caret line="57" column="10" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AIComponent.swift" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FestivalArchitect/Classes/Components/AIComponent.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6205036" vertical-offset="0" max-vertical-offset="556">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
               <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
@@ -147,11 +147,11 @@
         <option value="$PROJECT_DIR$/FestivalArchitect/Classes/Components/AiComponent.swift" />
         <option value="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateHungry.swift" />
         <option value="$PROJECT_DIR$/FestivalArchitect/ShortestPathStep.swift" />
-        <option value="$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift" />
         <option value="$PROJECT_DIR$/FestivalArchitect/AStar.swift" />
         <option value="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIState.swift" />
         <option value="$PROJECT_DIR$/FestivalArchitect/Classes/AIStates/AIStateThirsty.swift" />
         <option value="$PROJECT_DIR$/FestivalArchitect/Classes/Components/AIComponent.swift" />
+        <option value="$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift" />
       </list>
     </option>
   </component>
@@ -445,7 +445,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="22" width="1280" height="774" extended-state="7" />
+    <frame x="-5" y="22" width="1280" height="774" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -459,7 +459,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1716312" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22578125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22578125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -585,14 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="2985">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FestivalArchitect/Classes/Components/MoveComponent.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="556">
@@ -664,8 +656,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FestivalArchitect/Classes/Components/AIComponent.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6205036" vertical-offset="0" max-vertical-offset="556">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FestivalArchitect/Classes/HelloWorldScene.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16187051" vertical-offset="765" max-vertical-offset="3135">
+          <caret line="57" column="10" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>

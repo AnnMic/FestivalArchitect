@@ -10,10 +10,11 @@ import Foundation
 
 class AIComponent : Component {
     var currentState:AIState
-
+//    var actionList: [AIState]
 
     init(currentState:AIState) {
          self.currentState = currentState
+       // actionList.append(currentState)
     }
 
     

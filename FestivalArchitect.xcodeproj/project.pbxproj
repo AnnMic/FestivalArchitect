@@ -255,6 +255,10 @@
 		29BA6B4119DEDA8800B6AFE5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29BA6B3B19DEDA8800B6AFE5 /* Info.plist */; };
 		29BA6B4219DEDA8800B6AFE5 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3C19DEDA8800B6AFE5 /* Matcher.swift */; };
 		29BA6B4319DEDA8800B6AFE5 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA6B3D19DEDA8800B6AFE5 /* System.swift */; };
+		29E45D251A13AAC9007D68C1 /* AIStateFindFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E45D241A13AAC9007D68C1 /* AIStateFindFood.swift */; };
+		29E45D271A13B1B4007D68C1 /* PhysicalNeedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E45D261A13B1B4007D68C1 /* PhysicalNeedComponent.swift */; };
+		29E45D2A1A13C773007D68C1 /* AIStateWalkRandomly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E45D291A13C773007D68C1 /* AIStateWalkRandomly.swift */; };
+		29E45D2C1A13CA05007D68C1 /* PhysicalNeedSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E45D2B1A13CA05007D68C1 /* PhysicalNeedSystem.swift */; };
 		C4E4C0A20F993E3E4A4AC3B3 /* AIStateQuenchThirsty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4C793B1435B1955D7C729 /* AIStateQuenchThirsty.swift */; };
 		C4E4C10D1CA2E375E3E7A81E /* AIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4CFD7BDFB2C195D9BCA61 /* AIState.swift */; };
 		C4E4C27E21C42D4C20E1867C /* AIComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E4C52136734FC555DF7809 /* AIComponent.swift */; };
@@ -731,6 +735,10 @@
 		29BA6B3B19DEDA8800B6AFE5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29BA6B3C19DEDA8800B6AFE5 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		29BA6B3D19DEDA8800B6AFE5 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		29E45D241A13AAC9007D68C1 /* AIStateFindFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateFindFood.swift; sourceTree = "<group>"; };
+		29E45D261A13B1B4007D68C1 /* PhysicalNeedComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicalNeedComponent.swift; sourceTree = "<group>"; };
+		29E45D291A13C773007D68C1 /* AIStateWalkRandomly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateWalkRandomly.swift; sourceTree = "<group>"; };
+		29E45D2B1A13CA05007D68C1 /* PhysicalNeedSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicalNeedSystem.swift; sourceTree = "<group>"; };
 		C4E4C52136734FC555DF7809 /* AIComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIComponent.swift; sourceTree = "<group>"; };
 		C4E4C793B1435B1955D7C729 /* AIStateQuenchThirsty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateQuenchThirsty.swift; sourceTree = "<group>"; };
 		C4E4CCE64300AE4F425B6155 /* AIStateQuenchHunger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIStateQuenchHunger.swift; sourceTree = "<group>"; };
@@ -812,15 +820,12 @@
 		296C9A9B19E1B40100415B87 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				29039FD01A12B1EC008344DE /* HungerComponent.swift */,
-				29039FD11A12B1EC008344DE /* ThirstComponent.swift */,
+				29E45D281A13B2B1007D68C1 /* NotUsed */,
 				296C9A9C19E1B40100415B87 /* AnimateComponent.swift */,
 				296C9A9D19E1B40100415B87 /* MoveComponent.swift */,
-				296C9A9E19E1B40100415B87 /* PositionComponent.swift */,
 				296C9A9F19E1B40100415B87 /* RenderComponent.swift */,
-				296C9AA019E1B40100415B87 /* SpeedComponent.swift */,
 				C4E4C52136734FC555DF7809 /* AIComponent.swift */,
-				29039FD41A12B893008344DE /* SleepComponent.swift */,
+				29E45D261A13B1B4007D68C1 /* PhysicalNeedComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -843,6 +848,7 @@
 				296C9AAC19E1B40200415B87 /* InitialRenderSystem.swift */,
 				296C9AAD19E1B40200415B87 /* MoveSystem.swift */,
 				29039FC01A122D23008344DE /* AISystem.swift */,
+				29E45D2B1A13CA05007D68C1 /* PhysicalNeedSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1563,6 +1569,18 @@
 			path = EntitasSwift;
 			sourceTree = "<group>";
 		};
+		29E45D281A13B2B1007D68C1 /* NotUsed */ = {
+			isa = PBXGroup;
+			children = (
+				296C9AA019E1B40100415B87 /* SpeedComponent.swift */,
+				296C9A9E19E1B40100415B87 /* PositionComponent.swift */,
+				29039FD11A12B1EC008344DE /* ThirstComponent.swift */,
+				29039FD41A12B893008344DE /* SleepComponent.swift */,
+				29039FD01A12B1EC008344DE /* HungerComponent.swift */,
+			);
+			name = NotUsed;
+			sourceTree = "<group>";
+		};
 		C4E4CF6F329D6CD77AE43980 /* AIStates */ = {
 			isa = PBXGroup;
 			children = (
@@ -1570,6 +1588,8 @@
 				C4E4CCE64300AE4F425B6155 /* AIStateQuenchHunger.swift */,
 				C4E4C793B1435B1955D7C729 /* AIStateQuenchThirsty.swift */,
 				29039FC41A127FBC008344DE /* AIStateSleepTilRested.swift */,
+				29E45D241A13AAC9007D68C1 /* AIStateFindFood.swift */,
+				29E45D291A13C773007D68C1 /* AIStateWalkRandomly.swift */,
 			);
 			path = AIStates;
 			sourceTree = "<group>";
@@ -1720,6 +1740,7 @@
 				296C9D3919E1B40200415B87 /* NSMutableDictionary+WeakReferences.m in Sources */,
 				296CA68119E1CEBF00415B87 /* ShortestPathStep.swift in Sources */,
 				296C9CAA19E1B40200415B87 /* cpConstraint.c in Sources */,
+				29E45D251A13AAC9007D68C1 /* AIStateFindFood.swift in Sources */,
 				296C9D1B19E1B40200415B87 /* CCSlider.m in Sources */,
 				296C9D3A19E1B40200415B87 /* OALAudioFile.m in Sources */,
 				296C9D3219E1B40200415B87 /* ALWrapper.m in Sources */,
@@ -1837,6 +1858,7 @@
 				296C9CEE19E1B40200415B87 /* CCResponderManager.m in Sources */,
 				296C9CD819E1B40200415B87 /* ccGLStateCache.m in Sources */,
 				296C9CF119E1B40200415B87 /* CCShaderCache.m in Sources */,
+				29E45D2A1A13C773007D68C1 /* AIStateWalkRandomly.swift in Sources */,
 				29BA6B4219DEDA8800B6AFE5 /* Matcher.swift in Sources */,
 				296C9CD419E1B40200415B87 /* CCDrawingPrimitives.m in Sources */,
 				296C9C8019E1B40200415B87 /* MoveComponent.swift in Sources */,
@@ -1884,6 +1906,7 @@
 				296C9C7F19E1B40200415B87 /* AnimateComponent.swift in Sources */,
 				296C9CBE19E1B40200415B87 /* cpSpatialIndex.c in Sources */,
 				296C9CE019E1B40200415B87 /* CCNode.m in Sources */,
+				29E45D2C1A13CA05007D68C1 /* PhysicalNeedSystem.swift in Sources */,
 				296C9CC519E1B40200415B87 /* CCAction.m in Sources */,
 				29BA6B3E19DEDA8800B6AFE5 /* Collector.swift in Sources */,
 				296C9CAF19E1B40200415B87 /* cpHashSet.c in Sources */,
@@ -1891,6 +1914,7 @@
 				296C9CBD19E1B40200415B87 /* cpSpaceStep.c in Sources */,
 				296C9CA219E1B40200415B87 /* CCBsequence.m in Sources */,
 				296CA68319E1D2CA00415B87 /* AStar.swift in Sources */,
+				29E45D271A13B1B4007D68C1 /* PhysicalNeedComponent.swift in Sources */,
 				C4E4C27E21C42D4C20E1867C /* AIComponent.swift in Sources */,
 				C4E4CF6CDB011D85876B5B20 /* AIStateQuenchHunger.swift in Sources */,
 				C4E4C10D1CA2E375E3E7A81E /* AIState.swift in Sources */,
