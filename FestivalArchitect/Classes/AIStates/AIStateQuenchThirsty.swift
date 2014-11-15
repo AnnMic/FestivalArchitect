@@ -28,12 +28,19 @@ class AIStateQuenchThirsty : AIState {
     override func execute(entity:Entity, aiSystem:AISystem) {
         println("Drinking someting")
         
-        var thirst:ThirstComponent = entity.component(ThirstComponent)!
-        thirst.thirst--
+        var render:RenderComponent = entity.component(RenderComponent)!
+        render.sprite.color = CCColor.purpleColor()
         
-        if(thirst.thirst <= 0){
-            aiSystem.changeStateForEntity(entity, toState:AIStateSleepTilRested())
+        
+        var visitor:PhysicalNeedComponent = entity.component(PhysicalNeedComponent)!
+        if visitor.thirst < 50 {
+            visitor.thirst += 50
         }
+        else{
+            visitor.thirst = 100
+        }
+        
+        aiSystem.changeStateForEntity(entity)
     }
     
     override func exit(entity:Entity) {

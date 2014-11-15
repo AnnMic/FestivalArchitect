@@ -8,7 +8,9 @@
 
 import Foundation
 
-
+enum States {
+    case QuenchThirst, QuenchHunger, SleepTilRested
+}
 
 class AIState : NSObject {
     

@@ -21,13 +21,19 @@ class AIStateSleepTilRested : AIState {
     }
     
     override func execute(entity:Entity, aiSystem:AISystem) {
-        println("zzZZzz zzZZ")
+       // println("zzZZzz zzZZ")
         
-        var sleep:SleepComponent = entity.component(SleepComponent)!
-        sleep.fatigue--
+        var render:RenderComponent = entity.component(RenderComponent)!
+        render.sprite.color = CCColor.whiteColor()
         
-        if(sleep.fatigue <= 0){
-          //  aiSystem.changeStateForEntity(entity, toState:AIStateSleepTilRested())
+        var visitor:PhysicalNeedComponent = entity.component(PhysicalNeedComponent)!
+        if visitor.fatigue < 90 {
+            visitor.fatigue += 10
+        }
+        else{
+            visitor.fatigue = 100
+            aiSystem.changeStateForEntity(entity)
+
         }
     }
     
@@ -35,7 +41,7 @@ class AIStateSleepTilRested : AIState {
         println("Not tired anymore time to dance")
         
     }
-
-    
-    
 }
+
+
+

@@ -23,12 +23,21 @@ class AIStateQuenchHunger : AIState {
     override func execute(entity:Entity, aiSystem:AISystem) {
         println("Eating someting")
 
-        var hunger:HungerComponent = entity.component(HungerComponent)!
-        hunger.hungry--
+        //remove money?
         
-        if(hunger.hungry <= 0){
-            aiSystem.changeStateForEntity(entity, toState:AIStateQuenchThirsty())
+        var render:RenderComponent = entity.component(RenderComponent)!
+        render.sprite.color = CCColor.yellowColor()
+        
+        
+        var visitor:PhysicalNeedComponent = entity.component(PhysicalNeedComponent)!
+        if visitor.hunger < 70 {
+            visitor.hunger += 30
         }
+        else{
+            visitor.hunger = 100
+        }
+        
+        aiSystem.changeStateForEntity(entity)
     }
     
     override func exit(entity:Entity) {
